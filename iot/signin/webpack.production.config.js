@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 require("@babel/polyfill");
@@ -56,7 +56,9 @@ module.exports={
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new CleanWebpackPlugin([outdir+'/*.js', outdir+'/*.js.map']),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [outdir+'/*.js', outdir+'/*.js.map']  
+    }),
     new HtmlWebpackPlugin({
       hash: false,
       template: './src/index.html',

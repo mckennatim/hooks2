@@ -1,5 +1,6 @@
 import React from 'react'
 import {cfg} from '../utilities/getCfg'
+console.log('cfg: ', cfg)
 
 const GoAuth = ()=>{
   const goRegister=()=>{

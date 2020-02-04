@@ -3,6 +3,7 @@ import env from '../../denv.json'
 import {storageLocal} from './storageLocal'
 
 const cfg= env[jsenv.m||'local']
+console.log('cfg: ', cfg)
 
 const authqry = cfg.url.soauth+"/spa/"+cfg.appid+"?apiURL="+encodeURIComponent(cfg.url.api)+"&cbPath="+encodeURIComponent(cfg.cbPath)
 

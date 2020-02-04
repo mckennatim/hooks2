@@ -6,7 +6,7 @@ var routes = [
   {path: 'items', page: 'Items'},
   {path: 'lists', page: 'Lists'},
   {path: 'users', page: 'Users'},
-  {path: '*', page: 'Control'},
+  {path: '*', page: 'Items'},
 ]
 const makeRouter = (routes)=>{
   const onrt = routes.reduce((acc,rt)=>{

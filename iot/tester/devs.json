@@ -1,0 +1,18 @@
+{
+  "CYURD100": [
+    {
+      "sr": 0,
+      "label": "temp"
+    },
+    {
+      "sr": 4,
+      "label": "timer"
+    }
+  ],
+  "CYURD006": [
+    {
+      "sr": 0,
+      "label": "temp_out"
+    }
+  ]
+}

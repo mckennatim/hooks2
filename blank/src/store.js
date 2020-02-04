@@ -11,7 +11,7 @@ const initState = {
     infocus: true,
     page: {
       name: 'Lists', 
-      params: null,
+      params: {query:""},
       prups: {
         locdata:{
           sunrise:"06:00",

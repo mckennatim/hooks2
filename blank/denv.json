@@ -3,10 +3,10 @@
     "superapp": "",
     "appid": "blank",
     "mqtt_server": "services.sitebuilt.net/iotb/wss",
-		"mqtt_port": 4333,
+		"wss_port": 3012,
     "url": {
       "soauth": "https://services.sitebuilt.net/soauth",
-      "api": "https://services.sitebuilt.net/iotex/api"
+      "api": "https://services.sitebuilt.net/s2g/api"
     },
     "cbPath": "#lists"
   },

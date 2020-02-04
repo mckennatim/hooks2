@@ -1,0 +1,17 @@
+[
+  {
+    "id": "temp",
+    "name": "Temperature",
+    "img": "temp_gh.jpg"
+  },
+  {
+    "id": "timer",
+    "name": "Timer",
+    "img": "light_gh.jpg"
+  },
+  {
+    "id": "temp_out",
+    "name": "Outside Temperature",
+    "img": "temp_out.jpg"
+  }
+]

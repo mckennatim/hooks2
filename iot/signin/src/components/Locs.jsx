@@ -3,6 +3,7 @@ import {parseQuery}from '../utilities/wfuncs'
 import {fetchLocs} from '../services/fetches'
 import {ls, cfg} from '../utilities/getCfg'
 // import { map } from 'rxjs/operators';
+console.log('cfg: ', cfg)
 
 const Locs = (props)=>{
   const [locids, setLocids] = useState([])

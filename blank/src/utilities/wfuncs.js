@@ -42,7 +42,8 @@ const render = (pg, para)=>{
   ReactDOM.render(React.createElement(pg, para), document.getElementById('rt')) 
 }
 
-const parseQuery = (query)=>{
+const parseQuery = (queryplus)=>{
+  const query = queryplus.split('?')[1]
   let obj = {}
   query.split('&')
     .map((term)=>{
