@@ -81,7 +81,7 @@ module.exports={
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [outdir+'/*.js', outdir+'/*.js.map']  
+      cleanOnceBeforeBuildPatterns: ['*.js', '*.js.map']  
     }),
     new HtmlWebpackPlugin({
       hash: false,

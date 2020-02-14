@@ -45,14 +45,15 @@ const render = (pg, para)=>{
 const parseQuery = (queryplus)=>{
   const query = queryplus.split('?')[1]
   let obj = {}
-  query.split('&')
+  if(query){
+    query.split('&')
     .map((term)=>{
       if(term){
         var ar = term.split('=')
         obj[ar[0]]=ar[1]
       }
-    }
-  )
+    })
+  }
   return obj
 }
 

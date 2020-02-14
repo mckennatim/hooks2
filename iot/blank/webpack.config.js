@@ -10,7 +10,7 @@ module.exports={
   entry: ['@babel/polyfill', "./src/app.js"],
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['dist/*.js', 'dist/*.js.map'] 
+      cleanOnceBeforeBuildPatterns: ['*.js', '*.js.map'] 
     }),
     new HtmlWebpackPlugin({
       hash: false,

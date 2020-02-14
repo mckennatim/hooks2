@@ -11,7 +11,7 @@ module.exports={
   plugins: [
     new CleanWebpackPlugin({
       verbose:true,
-      cleanOnceBeforeBuildPatterns: ['dist/*.js', 'dist/*.js.map'] 
+      cleanOnceBeforeBuildPatterns: ['*.js', '*.js.map'] 
     }),
     new HtmlWebpackPlugin({
       hash: false,

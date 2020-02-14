@@ -7,7 +7,6 @@ console.log('cfg.authqry: ', cfg.url.authqry)
 const Lists=(props)=>{
   console.log('props: ', props)
   const[listInfo,setListInfo]=useState([])
-  
   const qry = parseQuery(window.location.hash)
   // const message=(decodeURIComponent(qry.message))
   if (qry.token){
