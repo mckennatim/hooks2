@@ -1,6 +1,5 @@
 import React from 'react'
-import {cfg} from '../utilities/getCfg'
-console.log('cfg.authqry: ', cfg.authqry)
+// import {cfg} from '../utilities/getCfg'
 
 const Users=()=>{
 

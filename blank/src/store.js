@@ -10,7 +10,7 @@ const initState = {
     qconn:false,
     infocus: true,
     page: {
-      name: 'Lists', 
+      name: 'Items', 
       params: {query:""},
       prups: {
         locdata:{

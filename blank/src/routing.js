@@ -10,7 +10,9 @@ var routes = [
 ]
 const makeRouter = (routes)=>{
   const onrt = routes.reduce((acc,rt)=>{
-    acc[rt.path]=(params,query)=>{switchPage({name: rt.page, params: {...params, query: query}});}
+    acc[rt.path]=(params,query)=>{
+      switchPage({name: rt.page, params: {...params, query: query}});
+    }
     return acc
   }, {})
   return onrt

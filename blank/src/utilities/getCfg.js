@@ -1,19 +1,22 @@
-import jsenv from '../../envmy.json'
 import env from '../../denv.json'
 import {storageLocal} from './storageLocal'
 
-const cfg= env[jsenv.m||'local']
-console.log('cfg: ', cfg)
+const getTLD = (host) =>{
+  const sparr = host.split('.')
+  return sparr.length>2 ? `${sparr[1]}.${sparr[2]}` : host
+}
 
-const authqry = cfg.url.soauth+"/spa/"+cfg.appid+"?apiURL="+encodeURIComponent(cfg.url.api)+"&cbPath="+encodeURIComponent(cfg.cbPath)
+const tld = getTLD(window.location.hostname)
+const urls = env[tld]
 
-const signupqry = cfg.url.soauth+"/spa/signup?apiURL="+encodeURIComponent(cfg.url.api)+"&cbPath="+encodeURIComponent(cfg.cbPath)
+const authqry = urls.soauth+"/spa/"+env.appid+"?apiURL="+encodeURIComponent(urls.api)+"&cbPath="+encodeURIComponent(env.cbPath)
 
-cfg.url.authqry = authqry
-cfg.url.signupqry = signupqry
+const signupqry = urls.soauth+"/spa/signup?apiURL="+encodeURIComponent(urls.api)+"&cbPath="+encodeURIComponent(env.cbPath)
+
+const cfg={authqry,appid:env.appid,signupqry, urls, cbPath:env.cbPath}
 
 const ls = storageLocal(cfg.appid)
-
+ 
 const makeHref=(host,app,rt)=>{
   let href
   if(host=='iot.sitebuilt.net'||host=='iot.parleyvale.com'||host=='hvac.parleyvale.com'){

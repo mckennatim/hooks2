@@ -42,10 +42,11 @@ const render = (pg, para)=>{
   ReactDOM.render(React.createElement(pg, para), document.getElementById('rt')) 
 }
 
-const parseQuery = (queryplus)=>{
-  const query = queryplus.split('?')[1]
-  let obj = {}
+const parseQuery = (hashplus)=>{
+  const query = hashplus.split('?')[1]
+  let obj = {hayqry: false}
   if(query){
+    obj.hayqry = true
     query.split('&')
     .map((term)=>{
       if(term){
@@ -53,6 +54,10 @@ const parseQuery = (queryplus)=>{
         obj[ar[0]]=ar[1]
       }
     })
+  }else{
+    const sqry = hashplus.split('/')
+    if (sqry.length>1) 
+    obj ={hayqry:true, lid:sqry[1] }
   }
   return obj
 }

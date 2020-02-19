@@ -1,41 +1,52 @@
 import React, {useState, useEffect} from 'react'
 import {parseQuery}from '../utilities/wfuncs'
 import {ls,cfg} from '../utilities/getCfg'
+import {fetchLists} from '../services/fetches'
 
-console.log('cfg.authqry: ', cfg.url.authqry)
 
-const Lists=(props)=>{
-  console.log('props: ', props)
-  const[listInfo,setListInfo]=useState([])
-  const qry = parseQuery(window.location.hash)
-  // const message=(decodeURIComponent(qry.message))
-  if (qry.token){
-    ls.setItem({email:qry.email, token:qry.token})
-  }
+const Lists=()=>{
+  const[lists,setLists]=useState([])
+
+
 
   const getLists =()=>{
-    if(ls.getItem()){
-      console.log('getting locs: ')
-      // fetchListInfo(ls.getKey('token')).then((lists)=>{
-      //   const listcarr =lists.results.map((l)=>{
-      //     return {lid:l.lid, type:l.type}
-      //   })
-      //   setListInfo(listarr)
-      // })
+    const qry = parseQuery(window.location.hash)
+    window.location.href = window.location.href.split('?')[0]
+    // const message=(decodeURIComponent(qry.message))
+    if (qry.token){
+      ls.setItem({email:qry.email, token:qry.token})
     }
-    return listInfo
+    if(ls.getItem()){
+      fetchLists(ls.getKey('token')).then((result)=>{
+        const lists = result.result.data
+        setLists(lists)
+      })
+    }
   }
 
   useEffect(()=>{
     getLists()
-  })
+  },[])
 
+
+  const  gotoItems = (x)=>()=>{
+    window.location.href = window.location.href.split('#')[0]+'#items/'+x
+  }
 
 
   return(
     <div>
       <h1>Lists.jsx</h1>
-      <a href={cfg.url.authqry}>re-register</a>
+      <ul>
+        {lists.map((l)=>{
+          return(
+            <li key={l.lid} onClick={gotoItems(l.lid)}>
+              {l.type} {l.lid}
+          </li>
+          )
+        })}
+      </ul>
+      <a href={cfg.authqry}>re-register</a>
     </div>
   )
 }

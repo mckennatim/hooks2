@@ -2,8 +2,6 @@ import React from 'react'
 import {responsivePage} from '../showRWD'
 
 const App = (props)=>{
-  console.log('props: ', props)
-  console.log('responsivePage(props): ', responsivePage(props))
 
   const showPage=()=>{
     return responsivePage(props)
