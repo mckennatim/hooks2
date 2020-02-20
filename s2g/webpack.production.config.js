@@ -4,7 +4,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 require("@babel/polyfill");
-const outdir = 'heat'
+const outdir = 's2g'
 
 module.exports={
   stats: {
@@ -81,7 +81,7 @@ module.exports={
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['*.js', '*.js.map']  
+      cleanOnceBeforeBuildPatterns: ['*.js', '*.js.map'] 
     }),
     new HtmlWebpackPlugin({
       hash: false,

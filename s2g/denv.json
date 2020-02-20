@@ -1,0 +1,21 @@
+{
+  "superapp": "",
+  "appid": "s2g",
+  "cbPath": "#lists",
+  "wss_port": 3012,
+  "sitebuilt.net":{
+    "soauth": "https://services.sitebuilt.net/soauth",
+    "api": "https://services.sitebuilt.net/s2g/api",
+    "mqtt_server": "services.sitebuilt.net/iotb/wss"
+  },
+  "parleyvale.com": {
+    "soauth": "https://services.sitebuilt.net/soauth",
+    "api": "https://services.sitebuilt.net/s2g/api",
+    "mqtt_server": "services.sitebuilt.net/iotb/wss"
+  },
+  "localhost": {
+    "soauth": "http://localhost:7080",
+    "api": "http://localhost:3111/api",
+    "mqtt_server": "http://localhost:3344"
+  }
+}

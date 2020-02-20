@@ -16,7 +16,9 @@ const Items=()=>{
   const qry = parseHash(window.location.hash)
   console.log('qry: ', qry)
   if(qry.lid.length==0 && qry.rt){
+    setErr('No list selected, pick one')
     window.location.href = window.location.href.split('#')[0]+'#lists/'
+    
   }
 
   const[phrase,setPhrase]=useState('')
@@ -39,9 +41,9 @@ const Items=()=>{
         }
       }) 
     }else if(qry.lid.length==0){
-      setErr('no list selected, pick one')  
+      setErr('no list selected, pick one')
     }else{
-      setErr(reregmess)
+      setErr('NO TOKEN: '+reregmess)
     }
   }
 

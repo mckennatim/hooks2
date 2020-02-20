@@ -28,6 +28,7 @@ const Lists=()=>{
           setErr('you have no lists, care to add one?')
         }else{
           setLists(r.lists)
+          setErr('')
         }
       }) 
     }else{
