@@ -2,29 +2,54 @@ import React, {useState, useEffect}  from 'react'
 import {ls, cfg} from '../utilities/getCfg'
 import {parseHash}from '../utilities/wfuncs'
 import {fetchItems, searchItems} from '../services/fetches'
-// import {fromEvent,from,} from 'rxjs';
-// import {
-//   map, 
-//   filter,
-//   distinctUntilChanged,
-//   debounceTime,
-//   switchMap,
-// } from 'rxjs/operators';
+import io from 'socket.io-client';
 
+const socket = io.connect(cfg.urls.socket);
 
 const Items=()=>{
   const qry = parseHash(window.location.hash)
-  console.log('qry: ', qry)
-  if(qry.lid.length==0 && qry.rt){
-    setErr('No list selected, pick one')
-    window.location.href = window.location.href.split('#')[0]+'#lists/'
-    
-  }
 
   const[phrase,setPhrase]=useState('')
   const[err,setErr]=useState('')
   const[items,setItems]=useState([])
   const[found,setFound]=useState([])
+  const[message, setMessage]=useState({})
+
+
+  console.log('qry: ', qry)
+  if(qry.lid.length==0 && qry.rt!='#lists'){
+    setErr('No list selected, pick one')
+    window.location.href = window.location.href.split('#')[0]+'#lists/'
+  }
+
+  const parseMessage=(message)=>{
+    console.log('message: ', message)
+    if(message.product){
+      setMessage(message)
+    }
+  }
+
+  useEffect(() => {
+    socket.on('connect', function() {
+      console.log('on connected: ')
+    });
+    socket.on('message', (message)=>{
+      parseMessage(message)
+    })
+    return () => {
+      socket.off("socket off");
+    };
+  }, []);
+
+  useEffect(()=>{
+    console.log('items: ', items, Object.keys(message).length)
+    if(Object.keys(message).length>0){
+      items.push(message)
+      setItems(items)
+      setMessage({})
+    }
+
+  },[message])
 
   const reregmess = 'This machine does not remember you, try re-registering'
 
@@ -36,12 +61,14 @@ const Items=()=>{
         if(r.err){
           setErr(r.err)
         }else{
+          socket.emit('switch2room', qry.lid)
           setItems(r.items)
           setErr('')
         }
       }) 
     }else if(qry.lid.length==0){
       setErr('no list selected, pick one')
+      window.location.href = window.location.href.split('#')[0]+'#lists/'
     }else{
       setErr('NO TOKEN: '+reregmess)
     }
@@ -50,6 +77,8 @@ const Items=()=>{
   useEffect(()=>{
     getItems()
   },[qry.lid])
+
+
 
   console.log('items: ', items)
 
@@ -68,9 +97,11 @@ const Items=()=>{
   const selectFound=(f)=>()=>{
     setPhrase('')
     f.done=0
-    console.log('items.push(): ', items.push(f))
-    setItems(items)
+    console.log('f: ', f)
+    // console.log('items.push(): ', items.push(f))
+    // setItems(items)
     setFound([])
+    socket.emit('message', f)
     //updateItem(f.id)
   }
 
@@ -95,7 +126,7 @@ const Items=()=>{
       <ul>
       {items.map((l)=>{
         return(
-          <li key={l.id}>
+          <li key={l.product}>
             {l.product} {l.done}
         </li>
         )
