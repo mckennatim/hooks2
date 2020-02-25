@@ -42,9 +42,13 @@ const render = (pg, para)=>{
   ReactDOM.render(React.createElement(pg, para), document.getElementById('rt')) 
 }
 
+const getRt=(hash)=>{
+  return hash.split('/')[0].split('?')[0]
+}
+
 const parseQuery = (hashplus)=>{
+  console.log('getRt(hashplus): ', getRt(hashplus))
   const query = hashplus.split('?')[1]
-  console.log('query: ', query)
   let obj = {hayqry: false}
   if(query){
     obj.hayqry = true
@@ -60,10 +64,13 @@ const parseQuery = (hashplus)=>{
 }
 
 const parseHash = (hash)=>{
-  let obj = {hayqry: false, lid:'', rt:false}
+  console.log('getRt(hash): ', getRt(hash))
+  let obj = {hayqry: false, lid:'', rt:getRt(hash)}
   const sqry = hash.split('/')
-  if (sqry.length>1) 
-  obj ={hayqry:true, lid:sqry[1], rt:sqry[0] }
+  console.log('sqry: ', sqry)
+  if (sqry.length>1) {
+    obj ={hayqry:true, lid:sqry[1], rt:sqry[0] }
+  }
   return obj
 }
 

@@ -17,7 +17,7 @@ const Items=()=>{
 
 
   console.log('qry: ', qry)
-  if(qry.lid.length==0 && qry.rt!='#lists'){
+  if(qry.lid.length==0 && qry.rt=='#items'){
     setErr('No list selected, pick one')
     window.location.href = window.location.href.split('#')[0]+'#lists/'
   }
@@ -44,7 +44,14 @@ const Items=()=>{
   useEffect(()=>{
     console.log('items: ', items, Object.keys(message).length)
     if(Object.keys(message).length>0){
-      items.push(message)
+      const idx = items.findIndex((m)=>{
+        console.log('inside indecOF')
+        console.log(m.product, message.product)
+        console.log(m.product.toLowerCase(), message.product.toLowerCase(),m.product.toLowerCase() == message.product.toLowerCase())
+        return m.product.toLowerCase() == message.product.toLowerCase()})
+      console.log('idx: ', idx)
+      idx==-1 ? items.push(message): items[idx]=message
+      console.log('items: ', items)
       setItems(items)
       setMessage({})
     }
@@ -83,9 +90,11 @@ const Items=()=>{
   console.log('items: ', items)
 
   const search = (e)=>{
+    window.scroll(0,250)
     const v =e.target.value
     setPhrase(v)
     if(v.length>1){
+
       searchItems({token:ls.getKey('token'), lid:qry.lid, qry:v})
       .then((result)=>{
         const f = result.result.data
@@ -103,6 +112,13 @@ const Items=()=>{
     setFound([])
     socket.emit('message', f)
     //updateItem(f.id)
+  }
+
+  const addNew =()=>{
+    const rec ={lid:qry.lid, product:cap1(phrase), done:0, jsod:{}}
+    setFound([])
+    socket.emit('message', rec)
+    console.log('rec: ', rec)
   }
 
 
@@ -141,7 +157,7 @@ const Items=()=>{
       <h4>{err}</h4>
       {items && renderItems()}
       <input type="text" value={phrase} onChange={search}/>
-      <button>Add</button>
+      <button onClick={addNew}>Add</button>
       {found && renderFound()}
       <a href={cfg.authqry}>re-register</a>
     </div>
@@ -150,3 +166,7 @@ const Items=()=>{
 
 
 export{Items}
+
+function cap1 (str){
+ return str.charAt(0).toUpperCase() +str.slice(1)
+}

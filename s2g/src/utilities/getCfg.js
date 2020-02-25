@@ -3,11 +3,27 @@ import {storageLocal} from './storageLocal'
 
 const getTLD = (host) =>{
   const sparr = host.split('.')
-  return sparr.length>2 ? `${sparr[1]}.${sparr[2]}` : host
+  console.log('sparr: ', sparr, host)
+  if(sparr.length==3) return `${sparr[1]}.${sparr[2]}`//skip subdomain
+  else if(sparr.length==4) return 'localhost' //192.168.1.35
+  else return 'localhost'
 }
 
 const tld = getTLD(window.location.hostname)
-const urls = env[tld]
+const getURLS =(tld)=>{
+  const urls = env[tld]
+  const hostname= window.location.hostname
+  if (hostname.split('.').length==4) {
+    const keys= Object.keys(urls)
+    keys.map((k)=>{
+      const str =  urls[k]
+      const nstr=str.replace('localhost', hostname)  
+      urls[k] = nstr
+    })
+  }
+  return urls
+}
+const urls = getURLS(tld)
 
 const authqry = urls.soauth+"/spa/"+env.appid+"?apiURL="+encodeURIComponent(urls.api)+"&cbPath="+encodeURIComponent(env.cbPath)
 
