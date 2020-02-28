@@ -11,7 +11,7 @@ const fetchData = async (qry) => {
 };
 
 const fetchLocs = async (token) => {
-  const url = `${cfg.url.api}/reg/locs`
+  const url = `${cfg.urls.api}/reg/locs`
   console.log('url: ', url)
   const result = await axios.get(url,{
     headers: {'Authorization': 'Bearer '+ token}
@@ -20,7 +20,7 @@ const fetchLocs = async (token) => {
 };
 
 const fetchLocApps = async (token, locid) => {
-  const url = `${cfg.url.api}/reg/apps/${locid}`
+  const url = `${cfg.urls.api}/reg/apps/${locid}`
   console.log('url: ', url)
   const result = await axios.get(url,{
     headers: {'Authorization': 'Bearer '+ token}
@@ -29,7 +29,7 @@ const fetchLocApps = async (token, locid) => {
 };
 
 const fetchToken = async (token, locid, appid, role) => {
-  const url = `${cfg.url.api}/reg/la/${locid}/${appid}/${role}`
+  const url = `${cfg.urls.api}/reg/la/${locid}/${appid}/${role}`
   console.log('url: ', url)
   const result = await axios.get(url,{
     headers: {'Authorization': 'Bearer '+ token}
@@ -37,4 +37,34 @@ const fetchToken = async (token, locid, appid, role) => {
   return result.data;
 };
 
-export {fetchData, fetchLocs, fetchLocApps, fetchToken}
+const fetchDevs = async (token, locid) => {
+  const url = `${cfg.urls.api}/signin/devs/${locid}`
+  console.log('url: ', url)
+  const result = await axios.get(url,{
+    headers: {'Authorization': 'Bearer '+ token}
+  });
+  return result.data;
+};
+
+const postDevAuth= async (token, data) =>{
+  const url = `${cfg.urls.api}/signin/devauth`
+  const options = {headers: {'Authorization': 'Bearer '+ token}}
+  const result = await axios.post(url,data,options)
+  return result.data
+}
+
+const fetchDevsSpecs = async (token, locid)=>{
+  const url = `${cfg.urls.api}/signin/specs/${locid}`
+  const options = {headers: {'Authorization': 'Bearer '+ token}}
+  const result = await axios.get(url,options);
+  return result.data;
+}
+
+const postAppLoc =  async (token, data) =>{
+  const url = `${cfg.urls.api}/signin/apploc`
+  const options = {headers: {'Authorization': 'Bearer '+ token}}
+  const result = await axios.post(url,data,options)
+  return result.data
+}
+
+export {fetchData, fetchLocs, fetchLocApps, fetchToken, fetchDevs, postDevAuth, fetchDevsSpecs, postAppLoc}

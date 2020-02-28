@@ -10,6 +10,7 @@ const getTLD = (host) =>{
 }
 
 const tld = getTLD(window.location.hostname)
+
 const getURLS =(tld)=>{
   const urls = env[tld]
   const hostname= window.location.hostname
@@ -29,7 +30,7 @@ const authqry = urls.soauth+"/spa/"+env.appid+"?apiURL="+encodeURIComponent(urls
 
 const signupqry = urls.soauth+"/spa/signup?apiURL="+encodeURIComponent(urls.api)+"&cbPath="+encodeURIComponent(env.cbPath)
 
-const cfg={authqry,appid:env.appid,signupqry, urls, cbPath:env.cbPath}
+const cfg={authqry, appid:env.appid, signupqry, urls, cbPath:env.cbPath}
 
 const ls = storageLocal(cfg.appid)
  

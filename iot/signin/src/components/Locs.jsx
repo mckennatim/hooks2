@@ -67,7 +67,7 @@ const Locs = (props)=>{
           ))}
         </ul>
         {/* eslint-disable-next-line react/no-unescaped-entities */}
-        <span> Want to be someone else? <a href={cfg.url.authqry}>re-register</a>?</span>}
+        <span> Want to be someone else? <a href={cfg.authqry}>re-register</a>?</span>}
         </div>
       )
     }

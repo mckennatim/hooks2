@@ -11,7 +11,7 @@ const GoAuth = ()=>{
     <div>
       <h3>in GoAuth</h3>
       <button onClick={goRegister}>register</button>
-      <a href={cfg.url.authqry}>register</a>
+      <a href={cfg.authqry}>register</a>
     </div>
   )
 }

@@ -45,23 +45,37 @@ const LocApps = (props)=>{
     })
   }
 
+  const newApp=()=>{
+    window.location.assign(`#newapp/${locid}` ) 
+  }
+
+  const manageDevs=()=>{
+    window.location.assign(`#devs/${locid}` ) 
+  }
+
   const renderWhat=()=>{
-    const mstyle = respStyle(style.li, props.responsive.size)
-    console.log('apps: ', apps)
     if(!ls.getKey('token')){
       return(
         <div>
           <h4>This machine has forgotten about you. </h4>
         </div>
       )
+    }else{
+      const mstyle = respStyle(style.li, props.responsive.size)
+      console.log('apps: ', apps)
+      const tli = apps
+      .filter((f)=>f.role=='user')
+      .map((d,i)=>{
+        return (
+          <li key={i} style={mstyle} onClick={gotoApp(d.app, d.role)}>{d.app} </li>
+        )
+      })
+      return (
+        <ul>
+          {tli}
+        </ul>
+      )
     }
-    return (
-      <ul>
-      {apps.map((d,i)=>(
-        <li key={i} style={mstyle} onClick={gotoApp(d.app, d.role)}>{d.app} {d.role}</li>
-      ))}
-      </ul>
-    )
   }
 
   return(
@@ -69,7 +83,11 @@ const LocApps = (props)=>{
       <h3>Apps at {locid}</h3>
       {renderWhat()}
       <span>
-        Choos a different <a href="#locs">location</a>?
+        Choose a different <a href="#locs">location</a>?
+      </span><br/>
+      <span>
+        <button onClick={newApp}>Add another app at this location</button>
+        <button onClick={manageDevs}>Manage my devices at this location</button>
       </span>
     </div>
   )

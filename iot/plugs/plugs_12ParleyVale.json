@@ -1,0 +1,17 @@
+{
+  "devs": {
+    "CYURD100": [
+      {
+        "sr": 2,
+        "label": "dr"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id": "dr",
+      "name": "Dining Room Plants",
+      "img": "dr.jpg"
+    }
+  ]
+}

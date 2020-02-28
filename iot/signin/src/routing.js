@@ -9,6 +9,8 @@ var routes = [
   {path: 'fromauth', page: 'FromAuth'},
   {path: 'locs', page: 'Locs'},
   {path: 'apps/:loc', page: 'LocApps'},
+  {path: 'newapp/:loc', page: 'NewApp'},
+  {path: 'devs/:loc', page: 'Devs'},
   {path: '*', page: 'Locs'},
 ]
 const makeRouter = (routes)=>{
