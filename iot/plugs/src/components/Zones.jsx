@@ -8,6 +8,15 @@ import {
 // } from '../../npm/mqtt-hooks'
 import '../css/zones.css'
 
+const TimerZone =(props)=>{
+  console.log('props: ', props)
+  return(
+    <div>
+      <h5>in a TimerZone</h5>
+    </div>
+  )
+}
+
 const Zones=(props)=>{
   const {zones, devs, state, locdata}=props
   const tzadj=locdata ? locdata.tzadj : "0"
@@ -75,6 +84,7 @@ const Zones=(props)=>{
         }
         return(
         <li style={styles.li.li} key={i} onClick={gotoZone(k)}>
+          <TimerZone sk={sk} k={k}/>
           <div className='container'>
             <div className='item-img'>
             <img src={ima} alt={ima} width="70" height="70"/>
@@ -107,8 +117,10 @@ const Zones=(props)=>{
             <legend>Zones</legend>
             <ul style={styles.ul}>
               {tli}
+              
             </ul>     
           </fieldset>
+
         </div>
       )
     }else{

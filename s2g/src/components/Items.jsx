@@ -1,8 +1,9 @@
 import React, {useState, useEffect}  from 'react'
 import {ls, cfg} from '../utilities/getCfg'
 import {parseHash}from '../utilities/wfuncs'
-import {fetchItems, searchItems} from '../services/fetches'
+import {fetchItems, searchItems, fetchStoreLocs} from '../services/fetches'
 import io from 'socket.io-client';
+import {Item} from './Item.jsx'
 
 const socket = io.connect(cfg.urls.socket);
 
@@ -41,30 +42,40 @@ const Items=()=>{
     };
   }, []);
 
+  const filterItems = ()=>{
+    const witems = items.filter((w)=>w.done==0)
+    setItems(witems)
+  }
+
+  const waitAsec=()=>{
+    setTimeout(()=>filterItems(),1000)
+  }
+
+
   useEffect(()=>{
-    console.log('items: ', items, Object.keys(message).length)
     if(Object.keys(message).length>0){
-      const idx = items.findIndex((m)=>{
-        console.log('inside indecOF')
-        console.log(m.product, message.product)
-        console.log(m.product.toLowerCase(), message.product.toLowerCase(),m.product.toLowerCase() == message.product.toLowerCase())
-        return m.product.toLowerCase() == message.product.toLowerCase()})
-      console.log('idx: ', idx)
-      idx==-1 ? items.push(message): items[idx]=message
-      console.log('items: ', items)
-      setItems(items)
+      if(message.done==-1){
+        const ditems = items.filter((f)=>f.product!=message.product)
+        setItems(ditems)
+      }else{
+        const idx = items.findIndex((m)=>{
+          return m.product.toLowerCase() == message.product.toLowerCase()
+        })
+        //if notfound then new so push else change
+        idx==-1 ? items.push(message): items[idx]=message
+        console.log('items: ', items)
+        setItems(items)
+        waitAsec()
+      }
       setMessage({})
     }
-
   },[message])
 
   const reregmess = 'This machine does not remember you, try re-registering'
 
   const getItems=()=>{
     if(ls.getItem() && qry.lid.length>0){
-      console.log('getting items: ')
       fetchItems({token:ls.getKey('token'), lid:qry.lid}).then((r)=>{
-        console.log('r: ', r)
         if(r.err){
           setErr(r.err)
         }else{
@@ -81,13 +92,25 @@ const Items=()=>{
     }
   }
 
+  const getStoreLocs =()=>{
+    if(ls.getItem() && qry.lid.length>0){
+      console.log('getting stores locs: ')
+      fetchStoreLocs({token:ls.getKey('token'), lid:qry.lid}).then((r)=>{
+        console.log('r: ', r)
+        if(r.err){
+          setErr(r.err)
+        }else{
+          setErr('')
+        }
+      })
+    }
+  }
+
   useEffect(()=>{
     getItems()
+    getStoreLocs()
   },[qry.lid])
 
-
-
-  console.log('items: ', items)
 
   const search = (e)=>{
     window.scroll(0,250)
@@ -107,19 +130,35 @@ const Items=()=>{
     setPhrase('')
     f.done=0
     console.log('f: ', f)
-    // console.log('items.push(): ', items.push(f))
-    // setItems(items)
     setFound([])
     socket.emit('message', f)
     //updateItem(f.id)
   }
 
   const addNew =()=>{
-    const rec ={lid:qry.lid, product:cap1(phrase), done:0, jsod:{}}
+    const rec ={lid:qry.lid, product:cap1(phrase), done:0, jsod:'{}'}
     setFound([])
+    if (rec.toggle) {delete rec.toggle}
     socket.emit('message', rec)
     console.log('rec: ', rec)
   }
+
+  const isChecked = (l,i)=>()=>{
+    l.done=1
+    console.log('i,l: ', i,l)
+    const mitems = [...items]
+    mitems[i]=l
+    setItems(mitems)
+    if (l.toggle) {delete l.toggle}
+    socket.emit('message', l)
+  }
+
+  const delItem=(l)=>()=>{
+    l.done = -1
+    socket.emit('message', l)
+    console.log('DELETING ITEM',l)
+  }
+
 
 
   const renderFound=()=>{
@@ -136,14 +175,13 @@ const Items=()=>{
     )
   }
 
-
   const renderItems = ()=>{
     return(
       <ul>
-      {items.map((l)=>{
+      {items.map((l,i)=>{
         return(
           <li key={l.product}>
-            {l.product} {l.done}
+            <Item l={l} i={i} isChecked={isChecked} delItem={delItem}/>
         </li>
         )
       })}

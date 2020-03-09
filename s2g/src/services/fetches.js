@@ -8,7 +8,6 @@ const fetchLists = async (token) => {
     const result = await axios.get(url,{
       headers: {'Authorization': 'Bearer '+ token}
     });
-    console.log('result: ', result)
     return result.data
   } catch (err) {
     return {err:'Network Error: server maybe down'}
@@ -21,7 +20,19 @@ const fetchItems = async (q) => {
     const result = await axios.get(url,{
       headers: {'Authorization': 'Bearer '+ q.token}
     });
-    console.log('fetchItems result: ', result)
+    return result.data
+  } catch (err) {
+    return {err:'Network Error: server maybe down'}
+  }
+};
+
+const fetchStoreLocs = async (q) => {
+  const url = `${cfg.urls.api}/s2g/stores/${q.lid}`
+  try {
+    const result = await axios.get(url,{
+      headers: {'Authorization': 'Bearer '+ q.token}
+    });
+    console.log('fetchStoreLocs result: ', result.data)
     return result.data
   } catch (err) {
     return {err:'Network Error: server maybe down'}
@@ -37,4 +48,4 @@ const searchItems = async (q) => {
 };
 
 
-export{fetchLists, fetchItems, searchItems}
+export{fetchLists, fetchItems, searchItems, fetchStoreLocs}

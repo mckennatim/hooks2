@@ -86,7 +86,7 @@ const LocApps = (props)=>{
         Choose a different <a href="#locs">location</a>?
       </span><br/>
       <span>
-        <button onClick={newApp}>Add another app at this location</button>
+        <button onClick={newApp}>Add another app at this location</button><br/>
         <button onClick={manageDevs}>Manage my devices at this location</button>
       </span>
     </div>

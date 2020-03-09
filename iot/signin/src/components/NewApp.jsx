@@ -1,6 +1,6 @@
 import React ,{useState, useEffect}from 'react'
 import {ls} from '../utilities/getCfg'
-import { fetchDevsSpecs, postAppLoc } from '../services/fetches'
+import { fetchDevsSpecs, postAppLoc, fetchIsCorrectDevs } from '../services/fetches'
 
 
 const NewApp = ()=>{
@@ -45,30 +45,52 @@ const NewApp = ()=>{
   },[])
 
   const updateDb=()=>{
-    const dapploc = {...apploc, appid:app, locid:locid, devs:JSON.stringify(apploc.devs), zones:JSON.stringify(apploc.zones)}
-    console.log('dapploc: ', dapploc)
-    postAppLoc(ls.getKey('token'),dapploc)
-    .then((data)=>{
-      console.log('data: ', data)
+    const devarr = Object.keys(apploc.devs)
+    fetchIsCorrectDevs(ls.getKey('token'),devarr).then((data)=>{
+      if(data){
+        console.log('apploc.devs,devarr: ', apploc.devs,devarr)
+        const dapploc = {
+          devs:devarr, 
+          apploc:{...apploc, 
+            appid:app, 
+            locid:locid, 
+            devs:JSON.stringify(apploc.devs), 
+            zones:JSON.stringify(apploc.zones)
+          }
+        }
+        console.log('dapploc: ', dapploc)
+        postAppLoc(ls.getKey('token'),dapploc)
+        .then((data)=>{
+          console.log('data: ', data)
+        })
+      }else{
+        window.alert("Some of your devids don't seem to exist so the update did not happen")
+        console.log('failed: ')
+      }
     })
   }
 
   const renderAppLoc=()=>{
-    return(
-      <div>
-        
-        {/* <button onClick={getSpecs}>Get devices specs...</button> */}
-        <p>
-          View the device specs available to you at this location. Select the sensors/relays (srs) you want to use in your app. Create or edit an iot app and save a renamed app_loc.json file ex: <b> {`${app}_${locid}.json`}</b>. Include a devs and zone object in your json file based on the dievice specs avaialble to you. Once you are done import it. 
-        </p>
-        <span>
-          Edit your aploc file in the your editor then bring it here.
-        </span>
-        <button onClick={clickGet}>import {`${app}_${locid}.json`}</button>
-        <pre>{JSON.stringify(apploc, null, 2)}</pre><br/>
-        <button onClick={updateDb}>Update db for {app}@{locid}</button>
-      </div>
-    )
+    if (specs.length>0){
+      return(
+        <div>
+          {/* <button onClick={getSpecs}>Get devices specs...</button> */}
+          <p>
+            View the device specs available to you at this location. Select the sensors/relays (srs) you want to use in your app. Create or edit an iot app and save a renamed app_loc.json file as< b> {`${app}_${locid}.json`}</b>. Include a devs and zone object in your json file based on the device specs avaialble to you. Once you are done import it and then update the db.
+          </p>
+          <span>
+            Edit your aploc file in the your editor then bring it here.
+          </span>
+          <button onClick={clickGet}>import {`${app}_${locid}.json`}</button>
+          <pre>{JSON.stringify(apploc, null, 2)}</pre><br/>
+          <button onClick={updateDb}>Update db for {app}@{locid}</button>
+        </div>
+      )
+    }else{
+      return(
+        <p>You do not seem to have access to any devices at this location. ask the owner for access.</p>
+      )
+    }
   }
 
   const renderSpecs=()=>{
@@ -83,7 +105,7 @@ const NewApp = ()=>{
     })
     return(
       <div>
-        <h3>Devices, sensors and relays available at {locid}</h3>
+        <h4><u>Devices, sensors and relays available to you at {locid}</u></h4>
         
         <ul>
         {tli}
@@ -94,7 +116,7 @@ const NewApp = ()=>{
 
   return(
     <div>
-      <h4>NewApp at {locid}</h4>
+      <h4>NewApp at {locid} for {ls.getKey('email')}</h4>
       <button onClick={back2locs}>back to locs</button><br/>
       <label htmlFor="apname">new app name</label>
       <input id="appname" type="text" value={app}onChange={nextChar}/><br/>

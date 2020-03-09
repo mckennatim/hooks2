@@ -67,4 +67,12 @@ const postAppLoc =  async (token, data) =>{
   return result.data
 }
 
-export {fetchData, fetchLocs, fetchLocApps, fetchToken, fetchDevs, postDevAuth, fetchDevsSpecs, postAppLoc}
+const fetchIsCorrectDevs = async (token, data)=>{
+  const url = `${cfg.urls.api}/signin/isalldevs`
+  const options = {headers: {'Authorization': 'Bearer '+ token}}
+  const result = await axios.post(url,data,options);
+  return result.data;
+}
+
+
+export {fetchData, fetchLocs, fetchLocApps, fetchToken, fetchDevs, postDevAuth, fetchDevsSpecs, postAppLoc,fetchIsCorrectDevs}

@@ -34,6 +34,7 @@ const Control = () => {
   const topics  = ['srstate', 'sched', 'flags', 'timr'] 
 
   const {devs, zones, binfo, error}= useDevSpecs(ls, cfg, client, (devs)=>{
+    console.log('running usdevSpecs')
     if(!client.isConnected()){
       connect(client,lsh,(client)=>{
         if (client.isConnected()){
@@ -46,15 +47,8 @@ const Control = () => {
   })
 
   const initialState = {
-    kid: {pro:[[]], darr:[0,0,0,0]},
-    lr: {pro:[[]], darr:[0,0,0,0]},
-    music: {pro:[[]], darr:[0,0,0,0]},
-    peri: {pro:[[]], darr:[0,0,0,0]},
+    dr: {pro:[[7,15,1]], timeleft:0, darr:[0,0,0]},
     temp_out: {darr:[0,0,0,0]},
-    timer: {pro:[[]], timeleft:0, darr:[0,0,0,0]},
-    tv: {pro:[[]], darr:[0,0,0,0]},
-    mb: {pro:[[]], darr:[0,0,0,0]},
-    martha: {pro:[[]], darr:[0,0,0,0]}
   }
   const[status, setStatus] = useState('focused')
   const [state, dispatch] = useReducer(reducer, initialState);

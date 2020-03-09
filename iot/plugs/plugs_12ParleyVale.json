@@ -5,6 +5,12 @@
         "sr": 2,
         "label": "dr"
       }
+    ],
+    "CYURD006":[
+      {
+        "sr": 0,
+        "label": "temp_out"
+      }
     ]
   },
   "zones": [
@@ -12,6 +18,11 @@
       "id": "dr",
       "name": "Dining Room Plants",
       "img": "dr.jpg"
+    },
+    {
+      "id":"temp_out",
+      "name": "Outside Temp",
+      "img": "temp_out.jpg"
     }
   ]
 }
