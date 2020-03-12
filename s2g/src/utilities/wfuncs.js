@@ -47,7 +47,6 @@ const getRt=(hash)=>{
 }
 
 const parseQuery = (hashplus)=>{
-  console.log('getRt(hashplus): ', getRt(hashplus))
   const query = hashplus.split('?')[1]
   let obj = {hayqry: false}
   if(query){
@@ -64,10 +63,8 @@ const parseQuery = (hashplus)=>{
 }
 
 const parseHash = (hash)=>{
-  console.log('getRt(hash): ', getRt(hash))
   let obj = {hayqry: false, lid:'', rt:getRt(hash)}
   const sqry = hash.split('/')
-  console.log('sqry: ', sqry)
   if (sqry.length>1) {
     obj ={hayqry:true, lid:sqry[1], rt:sqry[0] }
   }

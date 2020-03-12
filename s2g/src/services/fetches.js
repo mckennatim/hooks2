@@ -32,7 +32,6 @@ const fetchStoreLocs = async (q) => {
     const result = await axios.get(url,{
       headers: {'Authorization': 'Bearer '+ q.token}
     });
-    console.log('fetchStoreLocs result: ', result.data)
     return result.data
   } catch (err) {
     return {err:'Network Error: server maybe down'}

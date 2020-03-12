@@ -7,10 +7,28 @@ const App = (props)=>{
     return responsivePage(props)
   }
 
+  const makeStyles =()=>{
+    const dstyles ={
+      header:{
+        backgroundColor: '#2060AD',
+        height: '35px',
+        fontSize: '1.3em',
+        padding: '15px 25px 1px 25px '
+      },
+      container:{
+        display: 'grid',
+        alignItems: 'top',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))'    
+      }
+    }
+    return dstyles
+  }
+  const styles =makeStyles()
+
   return(
     <div>
-      <h1>In App dog</h1>
-      <div>
+      <header style={styles.header}>stuff2get</header>
+      <div style={styles.container}>
         {showPage().map((el,i)=>{
           return <div key={i}>{el}</div>
         })}
@@ -20,3 +38,4 @@ const App = (props)=>{
 }
 
 export {App}
+

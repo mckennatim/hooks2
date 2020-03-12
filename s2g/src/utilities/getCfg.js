@@ -3,7 +3,6 @@ import {storageLocal} from './storageLocal'
 
 const getTLD = (host) =>{
   const sparr = host.split('.')
-  console.log('sparr: ', sparr, host)
   if(sparr.length==3) return `${sparr[1]}.${sparr[2]}`//skip subdomain
   else if(sparr.length==4) return 'localhost' //192.168.1.35
   else return 'localhost'
