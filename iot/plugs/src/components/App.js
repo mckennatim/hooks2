@@ -3,6 +3,7 @@ import {responsivePage} from '../showRWD'
 import {ClientSocket} from '@mckennatim/mqtt-hooks'
 // import {ClientSocket} from '../../npm/mqtt-hooks'
 import {cfg} from '../utilities/getCfg'
+console.log('cfg: ', cfg)
 
 class App extends React.Component{
   constructor(props) {

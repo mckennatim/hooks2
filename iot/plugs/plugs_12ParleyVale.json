@@ -2,8 +2,14 @@
   "devs": {
     "CYURD100": [
       {
-        "sr": 2,
+        "sr": 4,
         "label": "dr"
+      }
+    ],
+    "CYURD101": [
+      {
+        "sr": 4,
+        "label": "kit"
       }
     ],
     "CYURD006":[
@@ -18,6 +24,11 @@
       "id": "dr",
       "name": "Dining Room Plants",
       "img": "dr.jpg"
+    },
+    {
+      "id": "kit",
+      "name": "Kitchen Plants",
+      "img": "kit.jpg"
     },
     {
       "id":"temp_out",

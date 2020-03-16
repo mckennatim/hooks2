@@ -1,15 +1,46 @@
-import jsenv from '../../envmy.json'
 import env from '../../denv.json'
 import {storageLocal} from './storageLocal'
 
-const cfg= env[jsenv.m||'local']
+const getTLD = (host) =>{
+  const sparr = host.split('.')
+  if(sparr.length==3) return `${sparr[1]}.${sparr[2]}`//skip subdomain
+  else if(sparr.length==4) return 'localhost' //192.168.1.35
+  else return 'localhost'
+}
 
-const authqry = cfg.url.soauth+"/spa/"+cfg.appid+"?apiURL="+encodeURIComponent(cfg.url.api)+"&cbPath="+encodeURIComponent(cfg.cbPath)
+const tld = getTLD(window.location.hostname)
 
-const signupqry = cfg.url.soauth+"/spa/signup?apiURL="+encodeURIComponent(cfg.url.api)+"&cbPath="+encodeURIComponent(cfg.cbPath)
+const getURLS =(tld)=>{
+  const urls = env[tld]
+  const hostname= window.location.hostname
+  if (hostname.split('.').length==4) {
+    const keys= Object.keys(urls)
+    keys.map((k)=>{
+      const str =  urls[k]
+      const nstr=str.replace('localhost', hostname)  
+      urls[k] = nstr
+    })
+  }
+  return urls
+}
+const urls = getURLS(tld)
 
-cfg.url.authqry = authqry
-cfg.url.signupqry = signupqry
+const authqry = urls.soauth+"/spa/"+env.appid+"?apiURL="+encodeURIComponent(urls.api)+"&cbPath="+encodeURIComponent(env.cbPath)
+
+const signupqry = urls.soauth+"/spa/signup?apiURL="+encodeURIComponent(urls.api)+"&cbPath="+encodeURIComponent(env.cbPath)
+
+const url = urls
+
+// const cfg={authqry, appid:env.appid, signupqry, url, urls, cbPath:env.cbPath}
+const cfg={authqry, 
+  appid:env.appid, 
+  mqtt_server:env.mqtt_server, 
+  mqtt_port:env.mqtt_port,
+  signupqry, 
+  url, 
+  urls, 
+  cbPath:env.cbPath
+}
 
 const ls = storageLocal(cfg.appid)
 

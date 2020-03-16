@@ -34,6 +34,7 @@ createStore(initState)
 
   const nav2 = (name, prups, qry)=>{
     const rt = routes.filter((r)=>r.page==name)
+    console.log('name, rt: ', name, routes), 
     // console.log('prups: ', JSON.stringify(prups))
     setPageProps(prups)
     const navstr = qry ? `/${rt[0].path}?${qry}` : `/${rt[0].path}`

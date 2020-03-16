@@ -1,3 +1,9 @@
+# plugs
+
+# log 
+## do other shit
+tricky waiting for a reconnect to publish shit
+
 # operation - how to build an app
 
 Building an app should be agnostic as to what specific devices it uses. But you may have to use dummy devices to get it going and test it 

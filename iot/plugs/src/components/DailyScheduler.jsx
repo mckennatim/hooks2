@@ -1,10 +1,11 @@
 import React from 'react'
-import {ZoneTimer} from '../../npm/zone-timer'
-// import{ZoneTimer}from '@mckennatim/react-zonetimer'
+// import {ZoneTimer} from '../../npm/react-zonetimer'
+import{ZoneTimer}from '@mckennatim/react-zonetimer'
 import {nav2 } from '../app'
 
 const DailyScheduler=(props)=>{
   const {prups}=props.cambio.page
+  console.log('prups: ', prups)
   const {locdata, asched, from} = prups
   const query = props.cambio.page.params.query
   const {sunrise,sunset} = locdata
@@ -18,15 +19,10 @@ const DailyScheduler=(props)=>{
   return(
     <div style={styles.div}>
       <ZoneTimer 
-        range={[53,74]}
+        range={[0,1]}
         dif={2}
         difrange={12}
-        templines={[
-        {v:72,c:'red'}, 
-        {v:68, c:'orange'},
-        {v:64, c:'green'},  
-        {v:60, c:'purple'}, 
-        {v:56, c:'blue'}]}
+        templines={[]}
         sunrise={sunrise} 
         sunset={sunset}
         asched={asched}

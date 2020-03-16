@@ -9,6 +9,8 @@ import zone from '../img/zone.png'
 import daysched from '../img/daysched.png'
 import wksched from '../img/wksched.png'
 
+console.log('cfg: ', cfg)
+
 
 import {
   connect,
@@ -16,38 +18,57 @@ import {
   useDevSpecs,  
   processMessage, 
   setupSocket,
-  monitorFocus
+  monitorFocus,
+  getDinfo
 } from '@mckennatim/mqtt-hooks'
+import { useEffect } from 'react';
 // } from '../../npm/mqtt-hooks'
 
 const lsh = ls.getItem()
 
-const Control = () => {
+const Control = (props) => {
+  const {prups }= props.cambio.page
+
+  // const [doupd,setDoupd]=useState(false)
+  // const [bsched, setBsched]=useState({loc:'', sched:[[0,0,0]]})
+  // if(prups.doupd){
+  //   console.log('prups.sched: ', prups.sched, props.cambio.page.params.query)
+  //   setDoupd(true)
+  //   setBsched({loc:props.cambio.page.params.query, sched:prups.sched})
+  // }
   const [client, publish] = useContext(Context);
   client.onMessageArrived= onMessageArrived
 
-  const doOtherShit=()=>{
+  const doOtherShit=(devs, zones, client)=>{
+    console.log('devs: ', devs, zones)
+    if (prups.sched && prups.sched.length>1){
+      changePro()
+    }
     publish(client, "presence", "hello form do other shit")
+
   }
+
+
 
 
   const topics  = ['srstate', 'sched', 'flags', 'timr'] 
 
-  const {devs, zones, binfo, error}= useDevSpecs(ls, cfg, client, (devs)=>{
+  const {devs, zones, binfo, error}= useDevSpecs(ls, cfg, client, (devs,zones)=>{
     console.log('running usdevSpecs')
     if(!client.isConnected()){
       connect(client,lsh,(client)=>{
         if (client.isConnected()){
-          setupSocket(client, devs, publish, topics, (devs, client)=>doOtherShit(devs, client))
+          setupSocket(client, devs, publish, topics, (devs, client)=>doOtherShit(devs, zones, client))
         }
       })
     }else{
-      setupSocket(client, devs, publish, topics, (devs, client)=>doOtherShit(devs, client))
+      setupSocket(client, devs, publish, topics, (devs, client)=>doOtherShit(devs, zones, client))
     }
   })
 
   const initialState = {
     dr: {pro:[[7,15,1]], timeleft:0, darr:[0,0,0]},
+    kit: {pro:[[8,15,1]], timeleft:0, darr:[0,0,0]},
     temp_out: {darr:[0,0,0,0]},
   }
   const[status, setStatus] = useState('focused')
@@ -84,6 +105,34 @@ const Control = () => {
     window.location.assign(href)
   }
 
+  const changeTo = (onoff, rm)=>{
+    console.log('devs: ', devs)
+    console.log('zones: ', zones)
+    const di = getDinfo(rm,devs)
+    const topic = `${di.dev}/cmd`
+    const payload = `{"id":${di.sr},"sra":[${onoff}]}`
+    console.log('topic,payload: ', topic,payload)
+    publish(client, topic, payload)
+  }
+
+  const changePro =()=>{
+    console.log('devs,zones: ', devs,zones)
+  }
+
+
+  useEffect(()=>{
+    console.log('prups.sched: ', prups.sched)
+    if (prups.sched && prups.sched.length>1){
+      console.log('spinn')
+      // changePro()
+
+      // const di = getDinfo(props.cambio.page.params.query,devs)
+      // const topic = `${di.dev}/prg`
+      // const payload = `{"id":${di.sr},"sra":${prups.sched}}`
+      // console.log('topic,payload: ', topic,payload)
+    }
+  }, [prups.sched])
+  // console.log('devs,zones: ', devs,zones)
 
   const rrender=()=>{
     if (!error){
@@ -106,7 +155,7 @@ const Control = () => {
             </div>
           </div>
         </header>
-        <Zones zones={zones} state={state} devs={devs} locdata={locdata}/>
+        <Zones zones={zones} state={state} devs={devs} locdata={locdata} changeTo={changeTo}/>
         </div>
 
       )

@@ -1,39 +1,62 @@
 import React from 'react'
-import{nav2} from '../app'
+// import{nav2} from '../app'
 import {
-  getZinfo,
+  // getZinfo,
   whereInSched,
   hma2time
 } from '@mckennatim/mqtt-hooks'
 // } from '../../npm/mqtt-hooks'
 import '../css/zones.css'
+import{nav2} from '../app'
+import {bt_rel} from '../css/but.js'
 
 const TimerZone =(props)=>{
-  console.log('props: ', props)
+  const {sk, k, changeTo, locdata} =props 
+  // console.log('locdata: ', locdata)
+
+  const toggleOnOff=()=>{
+    const newt = !sk.darr[0]*1
+    changeTo(newt, k)
+  }
+
+  const renderOnOff=()=>{
+    const btext = sk.darr[0] ? 'ON': 'OFF'
+    const bkg = sk.darr[0] ? {background:'green'} : {background:'red'}
+    return(<button style={bkg}onClick={toggleOnOff}>{btext}</button>)
+  }
+
+  const schedChange=(asched)=>()=>{
+    console.log('asched: ', asched)
+    nav2('DailyScheduler', {locdata, asched:sk.pro, from:'Control'}, k)
+  }
+
   return(
     <div>
       <h5>in a TimerZone</h5>
+      {renderOnOff()}
+        <button classsname='but' style={bt_rel} onClick={schedChange(sk.pro)}>change todays schedule</button><br/>
     </div>
   )
 }
 
 const Zones=(props)=>{
-  const {zones, devs, state, locdata}=props
+  const {zones, devs, state, locdata, changeTo}=props
   const tzadj=locdata ? locdata.tzadj : "0"
   const keys = Object.keys(state)
   const tkeys = keys.filter((k)=>k!='temp_out'&&k!='timer')
   // console.log('locdata: ', locdata)
+  // console.log('devs: ', devs)
 
-  const gotoZone=(k)=>()=>{
-    const zinfo = [getZinfo(k, zones)]
-    // const dinfo =getDinfo(k, devs)
-    const tinfo = getZinfo('temp_out', zones)
-    zinfo.push(tinfo)
-    const zstate = {}
-    zstate[k]=state[k]
-    const mess = findKnext(k)
-    nav2('Zone', {state: zstate, zinfo, zones, devs, locdata, from:'Zones', mess}, k)
-  }
+  // const gotoZone=(k)=>()=>{
+  //   const zinfo = [getZinfo(k, zones)]
+  //   // const dinfo =getDinfo(k, devs)
+  //   const tinfo = getZinfo('temp_out', zones)
+  //   zinfo.push(tinfo)
+  //   const zstate = {}
+  //   zstate[k]=state[k]
+  //   const mess = findKnext(k)
+  //   nav2('Zone', {state: zstate, zinfo, zones, devs, locdata, from:'Zones', mess}, k)
+  // }
 
   const findKnext=(k)=>{
     const sched = state[k].pro
@@ -47,6 +70,7 @@ const Zones=(props)=>{
       )
     }
   }
+
 
   const renderZones=()=>{
     if(zones.length>0){
@@ -83,8 +107,8 @@ const Zones=(props)=>{
           }
         }
         return(
-        <li style={styles.li.li} key={i} onClick={gotoZone(k)}>
-          <TimerZone sk={sk} k={k}/>
+        <li style={styles.li.li} key={i}>
+          <TimerZone sk={sk} k={k} changeTo={changeTo} locdata={locdata}/>
           <div className='container'>
             <div className='item-img'>
             <img src={ima} alt={ima} width="70" height="70"/>

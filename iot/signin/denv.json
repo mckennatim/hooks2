@@ -12,7 +12,7 @@
   },
   "localhost": {
     "soauth": "http://localhost:7080",
-    "api": "http://localhost:3332/api"
+    "api": "https://services.sitebuilt.net/iotex/api"
   }
 }
 
