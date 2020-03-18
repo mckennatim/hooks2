@@ -39,10 +39,22 @@ const Control = (props) => {
   const [client, publish] = useContext(Context);
   client.onMessageArrived= onMessageArrived
 
+  const changePro =(devs,zones, client)=>{
+    console.log('devs,zones: ', props.cambio.page.params.query, devs, zones, prups.sched)
+    const ssched = JSON.stringify(prups.sched)
+    const di = getDinfo(props.cambio.page.params.query, devs)
+    const topic = `${di.dev}/prg`
+    const payload = `{"id":${di.sr},"pro":${ssched}}`
+    publish(client, topic,payload)
+    const reqtop =`${di.dev}/req`
+    const reqpay =`{"id":${di.sr},"req":"pro"}`
+    publish(client, reqtop,reqpay)
+  }
+
   const doOtherShit=(devs, zones, client)=>{
     console.log('devs: ', devs, zones)
     if (prups.sched && prups.sched.length>1){
-      changePro()
+      changePro(devs,zones, client)
     }
     publish(client, "presence", "hello form do other shit")
 
@@ -96,7 +108,7 @@ const Control = (props) => {
   monitorFocus(window, client, lsh, (status, client)=>{
     setStatus(status)
     if (client.isConnected()){
-      setupSocket(client, devs, publish, topics, (devs,client)=>doOtherShit(devs,client))
+      setupSocket(client, devs, publish, topics, (devs,client)=>doOtherShit(devs,zones, client))
     }
   })
   
@@ -115,9 +127,7 @@ const Control = (props) => {
     publish(client, topic, payload)
   }
 
-  const changePro =()=>{
-    console.log('devs,zones: ', devs,zones)
-  }
+
 
 
   useEffect(()=>{

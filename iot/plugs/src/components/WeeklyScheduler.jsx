@@ -12,6 +12,7 @@ const WeeklyScheduler=(props)=>{
   const{prups}=props.cambio.page
   const {sched, state, zinfo, temp_out, devs, from, zones, mess }=prups
   const query = props.cambio.page.params.query
+  console.log('zinfo: ', zinfo)
   const zinf = zinfo[0]
   
   const dinfo = devs ? getDinfo(zinf.id, devs): {dev: 'null', sr:-1}
@@ -151,9 +152,11 @@ const WeeklyScheduler=(props)=>{
       const ima = `./img/${zinf.img}`
       const zst = state[zinf.id]
       const da = zst.darr
+      console.log('da: ', da)
       const temp = da[0]
-      const set = (da[2]+da[3])/2
-      const onoff = da[1]
+      const set = da.lenght>3 ? <span>{(da[2]+da[3])/2} &deg;F </span> : da[0]==0 ? <span >off</span> : <span >on</span>
+      // const set = (da[2]+da[3])/2
+      const onoff = da.length>1 ? da[1] : !da[0]
       const rt = {
         outer:{
           float:"right",
@@ -189,7 +192,7 @@ const WeeklyScheduler=(props)=>{
             </div> 
             <div className='item-setpt'>
               <div style={rt.up}>
-                <span>{set} &deg;F</span><br/>
+                {set}
               </div><br/>
               <span style={rt.dn}>{mess}</span>
             </div> 
