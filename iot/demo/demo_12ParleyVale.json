@@ -1,0 +1,97 @@
+{
+  "devs": {
+    "CYURD006":[
+      {
+        "sr": 0,
+        "label": "temp_out"
+      }
+    ],
+    "CYURD074": [
+      {
+        "sr": 0,
+        "label": "mb"
+      }
+    ],
+    "CYURD112":[
+      {
+        "sr":0,
+        "label": "lux"
+      },
+      {
+        "sr": 1,
+        "label": "temp1b"
+      },
+      {
+        "sr": 2,
+        "label": "temp2b"
+      },
+      {
+        "sr": 3,
+        "label": "temp3h"
+      },
+      {
+        "sr": 4,
+        "label": "hum4h"
+      },
+      {
+        "sr": 5,
+        "label": "soil"
+      },
+      {
+        "sr": 6,
+        "label": "timr6"
+      },
+      {
+        "sr": 7,
+        "label": "timr7"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id":"temp_out",
+      "name": "Outside Temp",
+      "img": "temp_out.jpg"
+    },
+    {
+      "id":"mb",
+      "name": "Master Bedroom Temp",
+      "img": "mb.jpg"
+    },
+    {
+      "id":"lux",
+      "name": "Illumination in lux",
+      "img": "lux.jpg"
+    },
+    {
+      "id":"temp1b",
+      "name": "ds18b20 temp sensor",
+      "img": "temp1b.jpg"
+    },
+    {
+      "id":"temp2b",
+      "name": "ds18b20 controlled temp sensor",
+      "img": "temp2b.jpg"
+    },
+    {
+      "id":"temp3h",
+      "name": "DHT11 temp sensor",
+      "img": "temp3h"
+    },
+    {
+      "id":"hum4h",
+      "name": "DHT11 humidity sensor",
+      "img": "hum4h.jpg"
+    },
+    {
+      "id":"timr6",
+      "name": "timer 6",
+      "img": "timr6.jpg"
+    },
+    {
+      "id":"timr7",
+      "name": "timer 7",
+      "img": "timr7.jpg"
+    }
+  ]
+}

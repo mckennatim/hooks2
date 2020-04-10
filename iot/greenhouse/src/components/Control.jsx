@@ -76,6 +76,7 @@ const Control = (props) => {
 
   const initialState = {
     temp_out: {darr:[0,0,0,0]},
+    mb: {darr:[0,0,0,0]},
     gh_temp: {darr:[0,0,0,0]},
     gh_hum: {darr:[0,0,0,0]},
     gh_timr: {pro:[[6,15,1]], timeleft:0, darr:[0,0,0]}

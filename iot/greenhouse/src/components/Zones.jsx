@@ -39,6 +39,10 @@ const Zones=(props)=>{
     nav2('WeeklyScheduler', {...props, state:sta, zinfo, sched:state["gh_timr"].pro, from:'Control', temp_out:44}, "gh_timr")
   }
 
+  const getZinf=(str)=>{
+    return zones.filter((z)=>z.id==str)[0]
+  }
+
   const renderOnOff=()=>{
     const btext = state["gh_timr"].darr[0] ? 'ON': 'OFF'
     const bkg = state["gh_timr"].darr[0] ? {background:'green'} : {background:'red'}
@@ -56,12 +60,16 @@ const Zones=(props)=>{
             <legend>temp/humidity readings</legend>
             <br/>
             <div>
-              <span>
-                {zones[1].name}: {state["gh_temp"].darr[0]} &deg;F
+            <span>
+                {getZinf("gh_temp").name}: {state["gh_temp"].darr[0]} &deg;F
+              </span>
+            <br/><br/>
+            <span>
+                {getZinf("mb").name}: {state["mb"].darr[0]} &deg;F
               </span>
             <br/><br/>
               <span>
-                {zones[2].name}: {state["gh_hum"].darr[0]} %
+                {getZinf("gh_hum").name}: {state["gh_hum"].darr[0]} %
               </span>
               <br/><br/>
             </div>

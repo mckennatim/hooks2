@@ -1,0 +1,39 @@
+{
+  "devs": {
+    "CYURD100": [
+      {
+        "sr": 4,
+        "label": "kit"
+      }
+    ],
+    "CYURD101": [
+      {
+        "sr": 4,
+        "label": "dr"
+      }
+    ],
+    "CYURD006":[
+      {
+        "sr": 0,
+        "label": "temp_out"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id": "dr",
+      "name": "Dining Room Plants",
+      "img": "dr.jpg"
+    },
+    {
+      "id": "kit",
+      "name": "Kitchen Plants",
+      "img": "kit.jpg"
+    },
+    {
+      "id":"temp_out",
+      "name": "Outside Temp",
+      "img": "temp_out.jpg"
+    }
+  ]
+}

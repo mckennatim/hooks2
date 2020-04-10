@@ -6,6 +6,12 @@
         "label": "temp_out"
       }
     ],
+    "CYURD074": [
+      {
+        "sr": 0,
+        "label": "mb"
+      }
+    ],
     "CYURD004":[
       {
         "sr":0,
@@ -26,6 +32,11 @@
       "id":"temp_out",
       "name": "Outside Temp",
       "img": "temp_out.jpg"
+    },
+    {
+      "id":"mb",
+      "name": "Master Bedroom Temp",
+      "img": "mb.jpg"
     },
     {
       "id":"gh_temp",
