@@ -6,11 +6,12 @@ import io from 'socket.io-client';
 import {Item} from './Item.jsx'
 
 // var socket = io.connect(cfg.urls.socket,{
-//   secure: true,
-//   rejectUnauthorized: false,
-//   path: '/s2gio/socket.io'
+//   // secure: true,
+//   // rejectUnauthorized: false,
+//   path: '/s2gi/socket.io'
 // });
-var socket = io.connect(cfg.urls.socket);
+var socket = io.connect(cfg.urls.socket, {path:'/sockio/socket.io'});
+// var socket = io.connect(cfg.urls.socket);
 
 console.log('cfg.urls.socket: ', cfg.urls.socket)
 

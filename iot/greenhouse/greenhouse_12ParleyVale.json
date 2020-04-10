@@ -1,0 +1,46 @@
+{
+  "devs": {
+    "CYURD006":[
+      {
+        "sr": 0,
+        "label": "temp_out"
+      }
+    ],
+    "CYURD004":[
+      {
+        "sr":0,
+        "label": "gh_temp"
+      },
+      {
+        "sr": 1,
+        "label": "gh_hum"
+      },
+      {
+        "sr": 2,
+        "label": "gh_timr"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id":"temp_out",
+      "name": "Outside Temp",
+      "img": "temp_out.jpg"
+    },
+    {
+      "id":"gh_temp",
+      "name": "Greenhouse Temp",
+      "img": "gh_temp.jpg"
+    },
+    {
+      "id":"gh_hum",
+      "name": "Greenhouse Humidity",
+      "img": "gh_hum.jpg"
+    },
+    {
+      "id":"gh_timr",
+      "name": "Greenhouse Relay",
+      "img": "gh_timr.jpg"
+    }
+  ]
+}

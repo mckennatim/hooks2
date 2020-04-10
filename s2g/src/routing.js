@@ -6,7 +6,7 @@ var routes = [
   {path: 'items', page: 'Items'},
   {path: 'lists', page: 'Lists'},
   {path: 'users', page: 'Users'},
-  {path: 'iotest', page: 'IoTest'},
+  // {path: 'iotest', page: 'IoTest'},
   {path: 'iohook', page: 'IoHook'},
   {path: '*', page: 'Items'},
 ]

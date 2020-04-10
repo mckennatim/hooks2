@@ -1,5 +1,5 @@
-{ "short name": "HVAC",
-  "name": "HVAC",
+{ "short name": "Plugs",
+  "name": "Plugs Timer",
   "icons": [
   {
   "src": "icons/android/mipmap-ldpi/ic_launcher.png",

@@ -6,16 +6,16 @@
   "sitebuilt.net":{
     "soauth": "https://services.sitebuilt.net/soauth",
     "api": "https://services.sitebuilt.net/s2g/api",
-    "socket": "services.sitebuilt.net/iotb/wss"
+    "socket": "https://services.sitebuilt.net/s2gio"
   },
   "parleyvale.com": {
     "soauth": "https://services.sitebuilt.net/soauth",
     "api": "https://services.parleyvale.com/s2g/api",
-    "socket": "services.parleyvale.com/s2gio"
+    "socket": "https://stuff2get.parleyvale.com/sockio"
   },
   "localhost": {
     "soauth": "http://localhost:7080",
-    "api": "http://localhost:3111/api",
-    "socket": "http://localhost:3222"
+    "api": "http://localhost:3333/api",
+    "socket": "http://localhost:3333"
   }
 }

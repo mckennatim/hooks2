@@ -24,6 +24,7 @@ const getURLS =(tld)=>{
   return urls
 }
 const urls = getURLS(tld)
+console.log('urls: ', urls)
 
 const authqry = urls.soauth+"/spa/"+env.appid+"?apiURL="+encodeURIComponent(urls.api)+"&cbPath="+encodeURIComponent(env.cbPath)
 

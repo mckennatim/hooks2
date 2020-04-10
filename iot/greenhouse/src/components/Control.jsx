@@ -1,97 +1,95 @@
-import React, {useContext, useState, useReducer}from 'react'// eslint-disable-line no-unused-vars
+import React, {useContext, useState, useReducer} from 'react'// eslint-disable-line no-unused-vars
 import {cfg, ls, makeHref} from '../utilities/getCfg'
+// import {nav2} from '../app'
+import {Zones} from './Zones.jsx'
+import Icon from '@material-ui/core/Icon';
+import outdoors from '../img/outdoors.png'
+import control from '../img/control.png'
+import zone from '../img/zone.png'
+import daysched from '../img/daysched.png'
+import wksched from '../img/wksched.png'
+
+console.log('cfg: ', cfg)
+
 
 import {
   connect,
   Context, 
   useDevSpecs,  
   processMessage, 
-  getZinfo,
-  getDinfo, 
   setupSocket,
-  monitorFocus
+  monitorFocus,
+  getDinfo
 } from '@mckennatim/mqtt-hooks'
-
-// import {
-//   Context, 
-//   useDevSpecs,  
-//   processMessage, 
-//   getZinfo,
-//   getDinfo, 
-//   setupSocket,
-//   monitorFocus
-// } from '../../nod/src'
+import { useEffect } from 'react';
+// } from '../../npm/mqtt-hooks'
 
 const lsh = ls.getItem()
 
-const Zones=(props)=>{
-  const {zones, devs, state, locdata}=props
-  const tzadj=locdata ? locdata.tzadj : "0"
-  const keys = Object.keys(state)
-  const tkeys = keys.filter((k)=>k!='temp_out'&&k!='timer')
-  console.log('tzadj, tkeys,devs: ', tzadj, tkeys,devs)
+const Control = (props) => {
+  const {prups }= props.cambio.page
 
-  const renderZones=()=>{
-    if(zones.length>0){
-      const z1 = getZinfo('temp_gh',zones)
-      const z2 = getZinfo('hum_gh',zones)
-      const z3 = getZinfo('temp_out',zones)
-      const z4 = getZinfo('light_gh', zones)
-      return(
-        <div>
-          <h3>{z3.name}: {state.temp_out.darr[0]}</h3>
-          <h3>{z1.name}: {state.temp_gh.darr[0]}</h3>
-          <h3>{z2.name}: {state.hum_gh.darr[0]}</h3>
-          <h4>{z4.name} program has them on for another {state.light_gh.timeleft/60} minutes</h4>
-        </div>
-      )
-    }else{
-      return <h4>nozones</h4>
-    }
-  
-  }
-  return(
-    <div>
-      {renderZones()}
-    </div>
-  )
-}
-
-const Control = () => {
+  // const [doupd,setDoupd]=useState(false)
+  // const [bsched, setBsched]=useState({loc:'', sched:[[0,0,0]]})
+  // if(prups.doupd){
+  //   console.log('prups.sched: ', prups.sched, props.cambio.page.params.query)
+  //   setDoupd(true)
+  //   setBsched({loc:props.cambio.page.params.query, sched:prups.sched})
+  // }
   const [client, publish] = useContext(Context);
   client.onMessageArrived= onMessageArrived
 
-  const doOtherShit=()=>{
-    //console.log('other shit but not connected doesnt work yet')
-    //publish(client, "presence", "hello form do other shit")
+  const changePro =(devs,zones, client)=>{
+    console.log('devs,zones: ', props.cambio.page.params.query, devs, zones, prups.sched)
+    const ssched = JSON.stringify(prups.sched)
+    const di = getDinfo(props.cambio.page.params.query, devs)
+    const topic = `${di.dev}/prg`
+    const payload = `{"id":${di.sr},"pro":${ssched}}`
+    publish(client, topic,payload)
+    const reqtop =`${di.dev}/req`
+    const reqpay =`{"id":${di.sr},"req":"pro"}`
+    publish(client, reqtop,reqpay)
+  }
+
+  const doOtherShit=(devs, zones, client)=>{
+    console.log('devs: ', devs, zones)
+    if (prups.sched && prups.sched.length>1){
+      changePro(devs,zones, client)
+    }
+    publish(client, "presence", "hello form do other shit")
   }
 
   const topics  = ['srstate', 'sched', 'flags', 'timr'] 
-  const {devs, zones, binfo, error}= useDevSpecs(ls, cfg, client, (devs)=>
-    connect(client,lsh,(client)=>{
-      if (client.isConnected()){
-        setupSocket(client, devs, publish, topics, (devs, client)=>doOtherShit(devs, client))
-      }
-    })
-  )
 
+  const {devs, zones, binfo, error}= useDevSpecs(ls, cfg, client, (devs,zones)=>{
+    console.log('running usdevSpecs')
+    if(!client.isConnected()){
+      connect(client,lsh,(client)=>{
+        if (client.isConnected()){
+          setupSocket(client, devs, publish, topics, (devs, client)=>doOtherShit(devs, zones, client))
+        }
+      })
+    }else{
+      setupSocket(client, devs, publish, topics, (devs, client)=>doOtherShit(devs, zones, client))
+    }
+  })
 
   const initialState = {
-    temp_gh: {pro:[[]], darr:[0,0,0,0]},
-    hum_gh: {pro:[[]], darr:[0,0,0,0]},
-    light_gh: {pro:[[]], darr:[0,0,0,0]},
     temp_out: {darr:[0,0,0,0]},
+    gh_temp: {darr:[0,0,0,0]},
+    gh_hum: {darr:[0,0,0,0]},
+    gh_timr: {pro:[[6,15,1]], timeleft:0, darr:[0,0,0]}
   }
-  const [state, dispatch] = useReducer(reducer, initialState);
   const[status, setStatus] = useState('focused')
-
-  const [prog, setProg] = useState('[[0,0,0]]')
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   function reducer(state,action){
     const nstate = {...state}
     nstate[action.type]= action.payload
     return nstate
   }
+
+
   function onMessageArrived(message){
     const nsarr = processMessage(message, devs, state)
     if(nsarr.length>0){
@@ -103,71 +101,68 @@ const Control = () => {
     }
   }
 
+
   monitorFocus(window, client, lsh, (status, client)=>{
-    console.log('status: ', status)
     setStatus(status)
     if (client.isConnected()){
-      setupSocket(client, devs, publish, topics, (devs,client)=>doOtherShit(devs,client))
+      setupSocket(client, devs, publish, topics, (devs,client)=>doOtherShit(devs,zones, client))
     }
   })
   
-  const toggleOnOff=()=>{
-    const dinfo = getDinfo('light_gh', devs)
-    const newt = !state.light_gh.darr[0]*1
-    const topic = `${dinfo.dev}/cmd`
-    const payload = `{"id":${dinfo.sr},"sra":[${newt}]}`
-    console.log('topic + payload: ', topic + payload)
-
-    publish(client, topic, payload)
-  }
-
-  const changeProg=(e)=>{
-    console.log('e.target.value: ', e.target.value)
-    setProg(e.target.value)
-  }
-
-  const sendChange=()=>{
-    console.log('prog: ', prog)
-    const dinfo = getDinfo('light_gh', devs)
-    const topic = `${dinfo.dev}/prg`
-    const payload = `{"id":${dinfo.sr},"pro":${prog}}`
-    console.log('topic + payload: ', topic + payload)
-    publish(client, topic, payload)
-  }
   const goSignin =()=>{
     const href = makeHref(window.location.hostname, 'signin', '')//, `?${locid}`)
-    console.log('href: ', href)
     window.location.assign(href)
   }
 
-  const renderProg=()=>{
-    return(
-      <div>
-        <input type="text" size="30" onChange={changeProg} value={prog}/>
-        <button onClick={sendChange}>change prog for today</button>
-      </div>
-    )
+  const changeTo = (onoff, rm)=>{
+    console.log('devs: ', devs)
+    console.log('zones: ', zones)
+    const di = getDinfo(rm,devs)
+    const topic = `${di.dev}/cmd`
+    const payload = `{"id":${di.sr},"sra":[${onoff}]}`
+    console.log('topic,payload: ', topic,payload)
+    publish(client, topic, payload)
   }
 
-  const renderOnOff=()=>{
-    const btext = state.light_gh.darr[0] ? 'ON': 'OFF'
-    const bkg = state.light_gh.darr[0] ? {background:'green'} : {background:'red'}
-    return(<button style={bkg}onClick={toggleOnOff}>{btext}</button>)
-  }
+
+
+
+  useEffect(()=>{
+    console.log('prups.sched: ', prups.sched)
+    if (prups.sched && prups.sched.length>1){
+      console.log('spinn')
+      // changePro()
+
+      // const di = getDinfo(props.cambio.page.params.query,devs)
+      // const topic = `${di.dev}/prg`
+      // const payload = `{"id":${di.sr},"sra":${prups.sched}}`
+      // console.log('topic,payload: ', topic,payload)
+    }
+  }, [prups.sched])
+  // console.log('devs,zones: ', devs,zones)
 
   const rrender=()=>{
     if (!error){
       const {locdata} = binfo
+      const ico = status=='blur-disconnected' ? 'block' : 'signal_cellular_alt'
       return(
         <div>
-          <h1>Greenhouse </h1>\
-          <Zones zones={zones} state={state} devs={devs} locdata={locdata}/>
-          {/* <Zones zones={zones} temp_out={temp_out} temp_gh={temp_gh} hum_gh={hum_gh} light_gh={light_gh}/> */}
-          {renderOnOff()}
-          {renderProg()}
-          <pre>{JSON.stringify(devs, null, 2)}</pre><br/>
-          <pre>{JSON.stringify(zones, null, 4)}</pre> <br/>
-          <pre>{JSON.stringify(binfo, null, 4)}</pre>
+        <header style={styles.header}>
+          <div style={styles.container}>
+            <div style={styles.ul}><div><a style={styles.a} href="./"><Icon>house</Icon> </a>{locdata && locdata.loc} </div></div>
+            <div style={styles.ur}><a style={styles.a} href="./"><Icon>{ico}</Icon> </a></div>
+            
+            <div style={styles.ll}>
+              <div style={styles.txt}><span style={styles.otxt}>outside: </span> {state.temp_out.darr[0]} &deg;F</div>
+            </div>
+            <div style={styles.lr}>
+              <div style={styles.bigd}>
+                <a href="./#/bigdata"><span><Icon style={styles.tline}>timeline</Icon></span></a>
+              </div>
+            </div>
+          </div>
+        </header>
+        <Zones zones={zones} state={state} devs={devs} locdata={locdata} changeTo={changeTo}/>
         </div>
 
       )
@@ -176,8 +171,12 @@ const Control = () => {
         <div>
           <p>
             From this app on this machine&#39;s perspective, {error.qmessage} It is probably best to
-          <button onClick={goSignin}>go and (re-)signin</button>
+          <button onClick={goSignin}>go and (re-)signin</button>. But maybe nobody has registered you to a paticular location that has some iot devices that run this app. then this is as far as you can go. You can see some screenshots of the app below. 
           </p>
+          <img src={control} alt="main page"/>
+          <img src={zone} alt="zone page"/>
+          <img src={daysched} alt="daysched page"/>
+          <img src={wksched} alt="wksched page"/>
         </div>
       )
     }
@@ -185,11 +184,73 @@ const Control = () => {
 
   return (
     <div>
-      {status}
       {rrender()}
     </div>
   );
 };
 
 export{Control}
+
+const styles ={
+  header:{
+    // position: '-webkit-sticky',
+    position: 'sticky',
+    top: 0,
+    backgroundImage: 'linear-gradient(#3c3c3c,#111 )',
+    color:'white'
+  },
+  out:{
+    // background: 'white',
+    backgroundImage: `url(${outdoors})`,
+    filter:'hue-rotate(180deg)',
+    backgroundSize: 'cover',
+    width:"40px",
+    height:"40px",
+    textAlign:'center',
+
+  },
+  txt:{
+    color:'white'
+  },
+  otxt:{
+    fontSize: '10px'
+  },
+  tline:{
+    color:'white',
+    fontSize:'30px'
+  },
+  bigd:{
+    background:'grey',
+    width:'30px',
+    height:'30px',
+    border: '1px solid white',
+    borderRadius: '4px'
+  },
+  container:{
+    display: 'grid',
+    gridTemplateColumns: 'auto 50px',
+    gridTemplateRows: '25px 35px',
+  },
+  ul:{
+    gridColumnStart: 1,
+    gridRowStart: 1,
+    margin: '6px',
+  },
+  ur:{
+    gridColumnStart: 2,
+    gridRowStart: 1,
+  },
+  ll:{
+    gridColumnStart: 1,
+    gridRowStart: 2,
+    margin: '10px'
+  },
+  lr:{
+    gridColumnStart: 2,
+    gridRowStart: 2,
+  },
+  a:{
+    color:'white'
+  }
+}
 
