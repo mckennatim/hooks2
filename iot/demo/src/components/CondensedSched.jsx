@@ -15,7 +15,7 @@ const CondensedSched = (props)=>{
   const renderClocks = ()=>{
     let coldef =''
     const clocks = sch.map((s,i)=>{
-      const setpt = s.lenght>3 ? (s[2]+s[3])/2 : s[2]==1 ? 'on' : "off"
+      const setpt = s.length>3 ? (s[2]+s[3])/2 : s[2]==1 ? 'on' : "off"
       coldef = coldef + `${sz}px `
       return(
         <div key={i} >

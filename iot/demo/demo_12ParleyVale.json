@@ -84,6 +84,11 @@
       "img": "hum4h.jpg"
     },
     {
+      "id":"soil",
+      "name": "Soil Moisture Sensor",
+      "img": "hum4h.jpg"
+    },
+    {
       "id":"timr6",
       "name": "timer 6",
       "img": "timr6.jpg"

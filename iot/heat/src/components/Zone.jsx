@@ -273,7 +273,8 @@ const Zone = (props) =>{
             <button classsname='but' style={bt_rel} onClick={schedChange(pro)}>change todays schedule</button><br/>
           </fieldset>
           </div>
-          <div style={styles.hold}>
+          </fieldset>
+
           <fieldset>
             <legend>HOLD temperature until</legend>
             <input style={inp_dt} onChange={upDate} value={holddate}type="date"/><br/><br/>

@@ -25,21 +25,7 @@ const TimerZone =(props)=>{
     return(<button style={bkg}onClick={toggleOnOff}>{btext}</button>)
   }
 
-  const schedChange=()=>{
-    // console.log('asched: ', asched)
-    nav2('DailyScheduler', {locdata, asched:sk.pro, from:'Control'}, k)
-  }
 
-  const handleWeekly=()=>{
-    const zinfo = [getZinfo(k,zones)]
-    console.log('devs,zinfo: ', devs,zinfo,sk.pro)
-    const sta={}
-    sta[k]=sk
-    nav2('WeeklyScheduler', {...props, state:sta, zinfo, sched:sk.pro, from:'Control', temp_out:44}, k)
-    // const pro = state[zid].pro
-    // const temp_out = state.temp_out.darr[0]
-    // nav2('WeeklyScheduler', {...prups, zinfo, sched:pro, from:'Zone', temp_out, devs}, zid)
-  }
 
   return(
     <div>

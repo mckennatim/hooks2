@@ -81,6 +81,7 @@ const Control = (props) => {
     temp1b: {darr:[0]},
     temp3h: {darr:[0]},
     hum4h: {darr:[0]},
+    soil: {darr:[0]},
     temp2b: {pro:[[0,0,63,58],[6,15,68,62]], timeleft:0, darr:[66,0,68,64]},
     timr6: {pro:[[0,0,0],[6,15,1]], timeleft:0, darr:[0]},
     timr7: {pro:[[0,0,0],[16,15,1]], timeleft:0, darr:[0]},
@@ -125,7 +126,8 @@ const Control = (props) => {
     console.log('zones: ', zones)
     const di = getDinfo(rm,devs)
     const topic = `${di.dev}/cmd`
-    const payload = `{"id":${di.sr},"sra":[${onoff}]}`
+    const strarr = JSON.stringify(onoff)
+    const payload = `{"id":${di.sr},"sra":${strarr}}`
     console.log('topic,payload: ', topic,payload)
     publish(client, topic, payload)
   }
