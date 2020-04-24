@@ -74,12 +74,16 @@ const Control = (props) => {
     }
   })
 
-  const initialState = {
+  const initialState = {//pro must start at 0,0 
     temp_out: {darr:[0,0,0,0]},
+    lux: {darr:[0]},
     mb: {darr:[0,0,0,0]},
     gh_temp: {darr:[0,0,0,0]},
     gh_hum: {darr:[0,0,0,0]},
-    gh_timr: {pro:[[6,15,1]], timeleft:0, darr:[0,0,0]}
+    gh_timr: {pro:[[0,0,0],[18,15,1]], timeleft:0, darr:[0,0,0]},
+    sgh_temp: {darr:[0,0,0,0]},
+    sgh_hum: {darr:[0,0,0,0]},
+    sgh_timr: {pro:[[0,0,0],[19,15,1]], timeleft:0, darr:[0,0,0]}
   }
   const[status, setStatus] = useState('focused')
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -155,6 +159,7 @@ const Control = (props) => {
             
             <div style={styles.ll}>
               <div style={styles.txt}><span style={styles.otxt}>outside: </span> {state.temp_out.darr[0]} &deg;F</div>
+              <div style={styles.txt}><span style={styles.otxt}>light: </span> {state.lux.darr[0]} in LUX</div>
             </div>
             <div style={styles.lr}>
               <div style={styles.bigd}>
@@ -206,7 +211,7 @@ const styles ={
     filter:'hue-rotate(180deg)',
     backgroundSize: 'cover',
     width:"40px",
-    height:"40px",
+    height:"50px",
     textAlign:'center',
 
   },
@@ -230,7 +235,7 @@ const styles ={
   container:{
     display: 'grid',
     gridTemplateColumns: 'auto 50px',
-    gridTemplateRows: '25px 35px',
+    gridTemplateRows: '25px 45px',
   },
   ul:{
     gridColumnStart: 1,

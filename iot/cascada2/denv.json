@@ -1,0 +1,19 @@
+{
+  "superapp": "iot",
+  "appid": "cascada2",
+  "cbPath": "#locs",
+  "mqtt_server": "services.sitebuilt.net/iotb/wss", 
+  "mqtt_port": 4333,
+  "sitebuilt.net":{
+    "soauth": "https://services.sitebuilt.net/soauth",
+    "api": "https://services.sitebuilt.net/iotex/api"
+  },
+  "parleyvale.com": {
+    "soauth": "https://services.sitebuilt.net/soauth",
+    "api": "https://services.sitebuilt.net/iotex/api"
+  },
+  "localhost": {
+    "soauth": "http://localhost:7080",
+    "api": "https://services.sitebuilt.net/iotex/api"
+  }
+}

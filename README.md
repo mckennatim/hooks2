@@ -2,6 +2,11 @@
 
 # log 
 
+## 4/24/20 63-cascada2-fix_greenhouse
+*fixed config
+*in `Control.jsx init` pro:[[0,0,0][...]] has to start from 12:AM
+
+
 ## 4/10/20 62-greenhouse-demo
 
 

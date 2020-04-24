@@ -6,6 +6,12 @@
         "label": "temp_out"
       }
     ],
+    "CYURD114":[
+      {
+        "sr": 0,
+        "label": "lux"
+      }
+    ],
     "CYURD074": [
       {
         "sr": 0,
@@ -25,6 +31,20 @@
         "sr": 2,
         "label": "gh_timr"
       }
+    ],
+    "CYURD113":[
+      {
+        "sr":0,
+        "label": "sgh_temp"
+      },
+      {
+        "sr": 1,
+        "label": "sgh_hum"
+      },
+      {
+        "sr": 2,
+        "label": "sgh_timr"
+      }
     ]
   },
   "zones": [
@@ -34,24 +54,44 @@
       "img": "temp_out.jpg"
     },
     {
+      "id":"lux",
+      "name": "Light in Lux",
+      "img": "lux.jpg"
+    },
+    {
       "id":"mb",
       "name": "Master Bedroom Temp",
       "img": "mb.jpg"
     },
     {
       "id":"gh_temp",
-      "name": "Greenhouse Temp",
+      "name": "MB Greenhouse Temp",
       "img": "gh_temp.jpg"
     },
     {
       "id":"gh_hum",
-      "name": "Greenhouse Humidity",
+      "name": "MB Greenhouse Humidity",
       "img": "gh_hum.jpg"
     },
     {
       "id":"gh_timr",
-      "name": "Greenhouse Relay",
+      "name": "MB Greenhouse Relay",
       "img": "gh_timr.jpg"
+    },
+    {
+      "id":"sgh_temp",
+      "name": "Shed Greenhouse Temp",
+      "img": "sgh_temp.jpg"
+    },
+    {
+      "id":"sgh_hum",
+      "name": "Shed Greenhouse Humidity",
+      "img": "sgh_hum.jpg"
+    },
+    {
+      "id":"sgh_timr",
+      "name": "Shed Greenhouse Relay",
+      "img": "sgh_timr.jpg"
     }
   ]
 }

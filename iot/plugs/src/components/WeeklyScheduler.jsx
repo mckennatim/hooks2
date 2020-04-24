@@ -10,7 +10,7 @@ const dat = new Date().toISOString().split('T')[0]
 
 const WeeklyScheduler=(props)=>{
   const{prups}=props.cambio.page
-  const {sched, state, zinfo, temp_out, devs, from, zones, mess }=prups
+  const {sched, state, zinfo, temp_out, devs, zones, mess }=prups
   const query = props.cambio.page.params.query
   console.log('zinfo: ', zinfo)
   const zinf = zinfo[0]
@@ -35,7 +35,7 @@ const WeeklyScheduler=(props)=>{
   },[])
 
   const setNewSched=()=>{
-    nav2(from, {...prups, sched:edsched, doupd:true}, query)
+    nav2("Control", {...prups, sched:edsched, doupd:true}, query)
   }
 
   const createDowarr = ()=>{

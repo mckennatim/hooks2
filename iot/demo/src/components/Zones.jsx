@@ -3,7 +3,8 @@ import React,{useState} from 'react'
 import {
   getZinfo,
   whereInSched,
-  hma2time
+  hma2time,
+  m2ms
 } from '@mckennatim/mqtt-hooks'
 // } from '../../npm/mqtt-hooks'
 import '../css/zones.css'
@@ -154,7 +155,7 @@ const Zones=(props)=>{
           <fieldset style={styles.today}>
             <legend>current schedule for {getZinf("timr6").name}</legend>
             <CondensedSched sch={state["timr6"].pro} fontsz="12"/><br/>
-            <span>{state["timr6"].darr[0]==1 ? "ON" : "OFF"}  {findKnext("timr6")}</span><br/>
+            <span>{state["timr6"].darr[0]==1 ? "ON" : "OFF"}  {findKnext("timr6")}, timeleft:  {m2ms(state["timr6"].timeleft)} </span><br/>
             or override: {renderOnOff("timr6")}<br/>
             <button classsname='but' style={bt_rel} onClick={schedChange("timr6")}>change todays schedule</button>
             <button classsname='but' style={bt_rel} onClick={handleWeekly("timr6")}>change weekly schedule</button>
@@ -162,8 +163,11 @@ const Zones=(props)=>{
           <fieldset style={styles.today}>
             <legend>current schedule for {getZinf("timr7").name}</legend>
             <CondensedSched sch={state["timr7"].pro} fontsz="12"/><br/>
-            <span>{state["timr7"].darr[0]==1 ? "ON" : "OFF"}  {findKnext("timr7")}</span><br/>
-            or override: {renderOnOff("timr7")}<br/>
+            <span>{state["timr7"].darr[0]==1 ? "ON" : "OFF"}  {findKnext("timr7")}, timeleft:  {m2ms(state["timr7"].timeleft)} </span><br/>
+            <span>
+            or override: {renderOnOff("timr7")} 
+            </span>
+            <br/>
             <button classsname='but' style={bt_rel} onClick={schedChange("timr7")}>change todays schedule</button>
             <button classsname='but' style={bt_rel} onClick={handleWeekly("timr7")}>change weekly schedule</button>
           </fieldset>

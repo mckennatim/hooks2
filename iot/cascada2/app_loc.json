@@ -1,0 +1,17 @@
+{
+  "devs": {
+    "CYURD000": [
+      {
+        "sr": 2,
+        "label": "dr"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id": "dr",
+      "name": "Dog food dish",
+      "img": "dr.jpg"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "devs": {
+    "CYURD100": [
+      {
+        "sr": 4,
+        "label": "kit"
+      }
+    ],
+    "CYURD101": [
+      {
+        "sr": 4,
+        "label": "dr"
+      }
+    ],
+    "CYURD006":[
+      {
+        "sr": 0,
+        "label": "temp_out"
+      }
+    ],
+    "CYURD004":[
+      {
+        "sr":0,
+        "label": "gh_temp"
+      },
+      {
+        "sr": 1,
+        "label": "gh_hum"
+      },
+      {
+        "sr": 2,
+        "label": "gh_timr"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id": "dr",
+      "name": "Dining Room Plants",
+      "img": "dr.jpg"
+    },
+    {
+      "id": "kit",
+      "name": "Kitchen Plants",
+      "img": "kit.jpg"
+    },
+    {
+      "id":"temp_out",
+      "name": "Outside Temp",
+      "img": "temp_out.jpg"
+    },
+    {
+      "id":"gh_temp",
+      "name": "Greenhous Temp",
+      "img": "gh_temp.jpg"
+    },
+    {
+      "id":"gh_humid",
+      "name": "Greenhouse Humidity",
+      "img": "gh_humid.jpg"
+    },
+    {
+      "id":"gh_timr",
+      "name": "Greenhouse Relay",
+      "img": "gh_timr.jpg"
+    }
+  ]
+}

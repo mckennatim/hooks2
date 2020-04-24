@@ -94,19 +94,22 @@ const NewApp = ()=>{
   }
 
   const renderSpecs=()=>{
+
+    // console.log('specs: ', specs)
+    // const tli =specs
     const tli = specs.map((s,i)=>{
-      const sp = JSON.parse(s.specs).sr
+      // const sp = JSON.parse(s.specs).sr
       return(
         <li key={i}>
-          {s.devid}
-          <pre>{JSON.stringify(sp, null, 2)}</pre><br/>
+          {s.devid}<br/>
+          {s.specs}
+          {/* <pre>{JSON.stringify(sp, null, 2)}</pre><br/> */}
         </li>
       )
     })
     return(
       <div>
         <h4><u>Devices, sensors and relays available to you at {locid}</u></h4>
-        
         <ul>
         {tli}
         </ul>
