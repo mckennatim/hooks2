@@ -1,0 +1,611 @@
+=2019-20 season=
+   [[#Arise Arise | Arise Arise]]
+   [[#Arbeter Froyen | Arbeter Froyen]]
+   [[#Va, Pensiero | Va, Pensiero, Geyt Gedanken]]
+   [[#Gris, Bagris | Gris, Bagris]]
+   [[#I Am Willing | I Am Willing]]
+   [[#Makhatonim Geyen | Makhatonim Geyen]]
+   [[#Un Du Akerst | Un Du Akerst]]
+   [[#Mayn Rue Plats | Mayn Rue Plats]]
+   [[#Di Arbuzn  | Di Arbuzn ]]
+
+http://www.yiddishdictionaryonline.com/
+https://www.musical-u.com/learn/talking-rhythm-syncopated-rhythms-and-the-kodaly-method/
+http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms
+
+;2/22/20:Arise,Di Arbuzn,Arbeter Froyen, Va Pensiero,Mayn Rue Plats
+
+==Arise Arise==
+<score vorbis="1">{\clef bass \tempo 4 = 120 \key ees \major \numericTimeSignature
+\time 2/2 ees2 r4 ees\time 4/2 aes2. ees4 ees2. ees4 \time 3/2 ees4 ees ees ees ees ees \time 4/2 aes,2 r2 r4 r8 bes,8 ees8 g4.
+\time 3/2 f4 f8 f~ f f~ f4 aes, aes, \time 2/2 c2 r4 bes \time 3/2 bes2. r4  aes,4. aes,8 \time 4/2 ees2 r2 r4 g
+}\midi{}</score>
+<b>Bob: bass</b><br/>
+<html5media>http://www.abvchorus.org/resources/audio/arise_arise/Arise%20Arise%20Bass.mp3</html5media>
+
+==Arbeter Froyen==
+[http://www.abvchorus.org/resources/print/Arbeter%20Froyen%20-%20D%20minor.pdf sheet music]
+templ fun frayhayt, fun mentshlekhn glik
+<score vorbis="1">{\clef bass \tempo 4=80\key f \major \time 6/8   
+\set Score.currentBarNumber = #0 \bar ""
+a r2 a8 f g a16 a~ a4 a8 f g a16 g~ g4 g16 d8. e8 f g a c' c' bes a4 r16 a
+a8 f g a16 a~ a8. a16 a8 f g a16 g~ g8. g16  
+g d8. e8 f g a c' c' bes a4 r8 <d g,> <d g,>4 <d g,>16 <d g,>8. <d g,>8 <f a,>8 <f a,>8 <f a,>8 <f a,>8 <g c> r \break
+<g c>8 <g c> <g c> <g c>16 <g c>8. <g c>8 <g c>8. c16 c8 c4. bes,8 bes,4 bes,8 a, g, a, a,c c16 c~ c8 r c f g a16 g8. g8 a a,a, d f a d4.
+}\addlyrics {\set fontSize = #-2 
+- Ar- be- ter froy- en, lay- dn- de froy- en! Froy- en, vos shmakh- tn in hoyz un fab- rik,
+Vos shteyt ir fun vay- tn? Vos helft ir nit boy- en
+dem tem- pl fun fray- hayt, fun men- tshle- khn glik Helft undz trog- n dem ba- ner dem roy- tn
+For- verts, durkh shtu- rem, durkh fin- ste- re nekht! Helft undz vor- hayt un likht tsu far- shpreyt- n
+Tsvi- shn um- vi- sn- de, e- ln- te e- ln- te knekht!
+}
+\midi{}</score>
+
+{|width="700em"
+|Arbeter froyen, laydnde froyen! || Working women, suffering women!
+|-
+|Froyen, vos shmakhtn in hoyz un fabrik, || Women who waste away at home and factory,
+|-
+|Vos shteyt ir fun vaytn? || Why are you standing afar?
+|-
+|Vos helft ir nit boyen || Why are you not helping to build
+|-
+|Dem templ fun frayhayt, fun men_tshle_khn glik? || The temple of freedom, of human happiness?
+|- 
+||| 
+|- 
+|Helft undz trog_n dem baner dem roytn || Help us carry the red banner
+|-
+|For_verts, durkh shtu_rem, durkh fin_ste_re nekht! || Forward, through the storm, through sinister yesterdays!
+|-
+|Helft undz vor_hayt un likht tsu far_shpreyt_n || Help us spread truth and light
+|-
+|Tsvi_shn um_vi_sn_de, e_ln_te e_ln_te <s>knekht!</s> || Among the uninformed, miserable <s>enslaved!<s>
+|- 
+||| 
+|- 
+|knekht dmm dmm dmm ||enslaved. hard working women, Arbeter women
+|-
+|dmm (b)dmm (c)dmm  ||Women who labor in factories and homes
+|}
+<p style="page-break-before: always">
+<b> dmm dmm's let us all carry the red flag together</b><br/>
+<score vorbis="1">
+{
+  <<
+    \relative c '' {
+      \new Staff {
+        \set Staff.midiMinimumVolume = #0.1
+        \set Staff.midiMaximumVolume = #0.3
+        \set Score.currentBarNumber = #17 \bar "" \tempo 4=90  \key f \major \time 6/8
+        a8 f g a16 a~ a4 a8 f g a16 g~ g4 g16 d8. e8 f g a c c bes a4 r8 a f g
+      }
+    }
+    \new Staff  \with {midiInstrument = #"acoustic bass"} 
+    {
+      \set Staff.midiMinimumVolume = #0.7
+      \set Staff.midiMaximumVolume = #0.9
+      \clef bass \key f \major \time 6/8
+      d4. d d d d bes, c c4 cis8 d4. d d d g g c f4 r8 bes8^\f bes bes bes16 c'8. d'8 c' a f a g4
+    }
+  >>
+}
+\midi{}</score>
+''
+
+{|width="700em"
+|dmm (b)dmm (c)dmm  ||Women who labor in factories and homes
+|- 
+||| 
+|- 
+|Let us all carry the red flag to_ge_ther ||
+|-
+|wea_ther_ing storms in the dark of the night||
+|-
+|Buil_ding a tem_ple of free_dom for_ev_er||
+|-
+|Help_ing each o_ther to car_ry the light
+|- 
+|}
+(1st->high bflat, dai dai, 2nd->low like helft )
+
+
+have given their lives for the things they believe...
+<score vorbis="1">{\clef bass \tempo 4=90\key f \major \time 6/8 
+\set Score.currentBarNumber = #52 \bar ""
+a4 r2 a8^\mf a a a16 a~ a8. a16 a8 a a bes16 bes~ bes8. g16 g d8. e8 f g a g^\ff g g f r8 <d g,> <d g,> <d g,> <d g,> <d g,>16 <d g,>8. <d g,>8 <f a,>8 <f a,> <f a,> <f a,> <g c>4
+<g c>8 <g c> <g c> <g c>16 <g c>8. <g c>8 <g c>8. c16 c8 c r c bes,8 bes,4 bes,8 a, g, a, a,c c16 c~ c8 r c f g a16 g8.~ g8 a a, a, d f a f
+}\addlyrics {\set fontSize = #-2
+- Migh- ty as li- ons they fight for each o- ther For free- dom and jus- tice and e- qua- li- ty. We'll car- ry the ban- ner as sis- ters and bro- thers
+Wa- king the world to the light of the day. As friends and com- panions, as com- rades and lo- vers A- bet- er froy- en show us the show us the way
+} 
+\midi{}</score>
+
+dai dai
+<score vorbis="1">{\clef bass \tempo 4=90\key f \major \time 6/8 
+\set Score.currentBarNumber = #71 \bar ""
+e16 bes,8. c8 d e f a a g f4 r8 <d g,> <d g,>  <d g,>  <d g,>16 <d g,>8. <d g,>8 <f a,>8 <f a,>8 <f a,>8 <f a,>8 <g c>4  <g c>8 <g c>4  <g c>8. <g c>16 <g c>8 <g c>8. c16 c8 c4.
+bes,8. bes,16 bes,8 bes, a, g, a, a, c c16 c16~ c8. c16 c8 f g a16 g8. g8 a a, a, d4.
+}\addlyrics {\set fontSize = #-2 
+- - - - - - - - - -
+Helft undz di velt fun ir shmuts tsu der- hey- bn! A les op- fe- rn, vos undz iz lib,
+Kemf- n tsu- za- men, vi mekh- ti- ke leyb- n, Far fray- hayt, far glaykh- hayt, far und- zer prin- tsip!
+}\midi{}</score>
+
+{|width="700em"
+|Helft undz di velt fun ir shmuts tsu derheybn! || Help us elevate the world from its filth!
+|-
+|A_les opfern, vos undz iz lib, || Achieve everything that is dear to us,
+|-
+|Kemfn tsuzamen, vi mekhtike leybn || Fighting together, like mighty lions,
+|-
+|Far frayhayt, far glaykhhayt, far undzer printsip! || For freedom, for equality, for our principles!
+|}
+
+<b>Bob: bass1 1-16</b><br/>
+<html5media>http://www.abvchorus.org/resources/audio/Arbeter%20Froyen/Arbeter%20Froyen%20m1-16%20Bass%201.mp3</html5media>
+
+<b>Bob: bass1 continuing</b><br/>
+<html5media>http://www.abvchorus.org/resources/audio/Arbeter%20Froyen/Arbeter%20Froyen%20Bass%201%20%28m.15%20to%20the%20end%29.m4a</html5media>
+
+==Va, Pensiero==
+[http://www.abvchorus.org/resources/print/Va%20Piensero.pdf sheet music]
+<score vorbis="1">{\clef bass \tempo 4=90\key fis \major  
+\set Score.currentBarNumber = #1 \bar ""
+ais4 r2 ais8. gis16 fis4 cis8 r16 cis' cis'4 ais8. fis16 \tuplet 3/2 { fis8 eis gis } b4 r cis8. cis16 cis4 fis8. ais16 ais8. gis16 ais8. gis16 fis4 eis4 r4
+ais8. gis16 fis4 cis8 r16 cis' cis'4 ais8. fis16 \tuplet 3/2 { fis8 eis gis } b4 r cis8. cis16 \tuplet 3/2 {cis8 fis8 ais8} \tuplet 3/2 {cis' b gis} fis4 \tuplet 3/2 {eis8 ais8 gis8} fis4
+}\addlyrics {
+  \set fontSize = #-2
+- Geyt ge- dank- en af- fli glen, af gol- - de- ne Flit un shvebt um a vin- te- le a vol- ne
+ I- ber feld- er un veld- er tse- grin- te un zis, I- ber shti- ber un shte- te- lekh shey-  - - dem- shtil.
+}
+\midi{}</score>
+
+{|width="700em"
+|Geyt, gedanken af fli_glen, af gol_de_ne, || Go, thoughts on wings of gold, 
+|-
+|Flit un shvebt um a vin_te_le a vol_ne || Fly and float on a gentle breeze 
+|-
+|I_ber feld_er un veld_er tse_[grin_te un] zis, || Over fields and forests verdant and sweet,
+|-
+|I_ber [shti_ber un] [shte_te_lekh] shey[_ _dem]-shtil. ||Over houses and towns hauntingly quiet.
+|-
+|}
+
+<score vorbis="1">{\clef bass \tempo 4=90\key fis \major  
+\set Score.currentBarNumber = #10 \bar ""
+ais4 r2 ais8. ais16 gis4 \tuplet 3/2{bis8 ais gis} fis4 \tuplet 3/2{ais8 gis fis} eis8. fis16 gis4 r ais8. bis16
+cis'4 bis8. ais16 \tuplet 3/2{ ais8 gis fisis} \tuplet 3/2{ais gis fis} eis8. dis16 cis2
+ais8. gis16 fis4 cis8 r16 cis' cis'4 ais8 fis16 fis \tuplet 3/2{fis8 eis gis} b4 r cis8. cis16  \tuplet 3/2{cis8 fis ais} \tuplet 3/2{cis' b gis} fis4 \tuplet 3/2{eis8 ais gis} fis4
+}\addlyrics {\set fontSize = #-2
+ - Af- n breg fun - dem tay- - - khl veykh un fayn, Kumt tsu ru- en baym vayn- - - - shtok un fay- gn- boym
+ O, dos heym- land a- zoy sheyn un far- loy - - rn, O, zikh- roy - - - - nes lib - nor far- samt.
+} 
+\midi{}</score>
+
+{|width="700em"
+|Af_n breg [fun _ dem] tay[_ _khl] veykh un fayn, ||On the shore of the stream soft and fine,
+|-
+|Kumt tsu ru_en baym [vayn__[] [_shtok un] fay_gn_boym. ||Come to rest by the vine and fig tree.
+|-
+|O, dos heym_land a_zoy sheyn un far [loy__]rn, ||O, homeland so lovely and lost,
+|-
+|O, zikh_[roy__] [__nes] lib [_nor far]_samt. ||O, memories dear but poisonous.
+|}
+Big Moment
+<p style="page-break-before: always">
+Big Moment
+<score vorbis="1">{\clef bass \tempo 4=90\key fis \major  
+\set Score.currentBarNumber = #18 \bar ""
+cis' r2 cis'8. cis'16 cis4 cis8. cis16 cis4 \tuplet 3/2{cis cis8} gis,4 \tuplet 3/2{gis,8 gis, gis, }cis4 \tuplet 3/2{r8 
+cis cis} gis, r gis, r16 gis,16 gis,8 r gis, r16 gis,16 cis4 cis r gis8. gis16 cis4 cis8. cis16 cis4 \tuplet 3/2{cis8 cis cis} gis,2 cis4  \tuplet 3/2{r8 cis cis} gis, r gis, r16 gis,16 gis,8 r \tuplet 3/2{gis, gis, gis,}
+ cis2 r4 cis8. cis16 cis4 cis8. cis16 cis4 cis8. cis16 cis2 cis4 cis8. cis16 cis4 cis8. cis16 cis4 cis8. cis16 cis4 cis2
+ }\addlyrics {\set fontSize = #-2
+- Harf- n gol- de- ne fun di ne- vi- i - - im Far- vos hengt ir un shvaygt af di ver- bes? 
+Di zik- hroy- nes fun harts bren- en vi fay- er Mit tse- bro- khe- ne sher- blekh fun der zel.
+O, vu bis- tu shoyn, moy- she ra- bey- nu? Mir a- leyn muz- n breng- en der- ley- zung.
+} 
+\midi{}</score>
+{|width="700em"
+|Harf_n gol_de_ne fun di ne_vi_i__im || Golden harps of the prophets,
+|-
+|Far_vos hengt ir un shvaygt af di ver_bes? || Why are you hanging and silent on the willows?
+|-
+|Di zik_hroy_nes fun harts bren_en vi fay_er ||The memories of the heart burn like fire
+|-
+|Mit tse_bro_khe_ne sher_blekh fun der zel. ||With broken shards of the soul.
+|-
+|||
+|-
+|O, vu bis_tu shoyn, moy_she rab_ey_nu? ||O, where are you, Moses?
+|-
+|Mir a_leyn muz_n breng_en der_ley_zung. ||We ourselves must bring salvation.
+|}
+
+<score vorbis="1">{\clef bass \tempo 4=90\key fis \major  
+\set Score.currentBarNumber = #30 \bar ""
+  r2 r4 ais8. gis16 fis4 cis8 r16 cis' cis'4 ais8. fis16 \tuplet 3/2{fis8 eis gis} b4 r cis8. cis16  \tuplet 3/2{cis8 fis ais} \tuplet 3/2{cis' b gis} fis4 \tuplet 3/2{eis8 ais gis} fis8 r8
+   ais8. ais16 ais4 ais8. ais16 dis'2~ \tuplet 3/2{dis'8 cis' b} \tuplet 3/2 {ais b gis} fis 
+ }\addlyrics {\set fontSize = #-2
+ Zayt ba- gay- stert mit gi le un vun - - der Tsu baf- ra- yen, ba- na- yen di zel - fun der velt
+   Tsu baf- ray- en, ba- na- yen di zel- fun der velt
+} 
+\midi{}</score>
+{|width="700em"
+|Zayt ba_gay_stert mit gile un [vun__]der ||Be inspired with vision and wonder
+|-
+|Tsu baf_[ra_yen, ba]_[na[_yen di] zel [_fun der] velt (3) ||To liberate, renew the soul of the world (3)
+|-
+|Tsu ba_na_yen di velt. ||To renew the world.
+|}
+=====Bob: dant da don=====
+<html5media >http://www.abvchorus.org/resources/audio/Va%20Pensiero/Va%20Pensiero%20bass.mp3</html5media>
+
+== Gris, Bagris ==  
+[http://www.abvchorus.org/resources/print/Gris,%20Bagris,%20Choral%20Version.pdf sheet music]
+<html5media>http://www.abvchorus.org/resources/audio/gris%20bagris/Gris%20pronunciation.mp3</html5media>pronunciation
+<html5media>http://www.abvchorus.org/resources/audio/gris%20bagris/Gris%20Bagris%20-%20bass.mp3</html5media>bass
+
+{|width="600em"
+|Gris, bagris zey mit gezang, ||Greet, greet them with song
+|-
+|Ven di zun fargeyt, ||When the sun disappears.
+|-
+|Shpreyt zikh undzer loyb-gezang, ||Spreads itself our  praising-song,
+|-
+|Iber vayt un breyt. ||Over Far and wide.
+|-
+|||
+|-
+|||
+|-
+|'''Zingt, zingt, ale tsuzamen''', ||Sing, sing, all together,
+|-
+|Ale, '''ale, kleyn un groys''', ||All, all, little and big.
+|-
+|'''Brengt, brengt, mit freyd un lider''', ||Bring, bring, with joy and songs,
+|-
+|'''Likht (likht) in undzer hoyz'''. ||Light into our house.
+|-
+|||
+|-
+|||
+|-
+|Shpreyt dayn varemen fligl oys ||Spread your warm wings out
+|-
+|In dem ovnt-vint, ||In the evening wind,
+|-
+|Vayse likht in undzer hoyz, ||White light into our house
+|-
+|Ven der tog farshvindt. ||When the day disappears.
+|-
+|||
+|-
+|||
+|-
+|Zingt, zingt, ale tsuzamen, ||Sing, sing, all together,
+|-
+|Ale, ale, kleyn un groys, ||All, all, little and big.
+|-
+|Brengt, brengt, mit freyd un lider, ||Bring, bring, with joy and songs,
+|-
+|Likht in undzer hoyz. ||Light into our house.
+|-
+|||
+|-
+|||
+|-
+|Lomir eyn mishpokhe zayn, ||Let us one family be,
+|-
+|Sholem in der velt, ||Peace in the world,
+|-
+|Dort in heln zunenshayn, ||There in the bright sunshine
+|-
+|Dort vu keyner felt. ||There where no one lacks.
+|-
+|||
+|-
+|||
+|-
+|Zingt, zingt, ale tsuzamen, ||Sing, sing, all together,
+|-
+|Ale, ale, kleyn un groys, ||All, all, little and big.
+|-
+|Brengt, brengt, mit freyd un lider, ||Bring, bring, with joy and songs,
+|-
+|Likht in undzer hoyz. ||Light into our house.  
+|-
+|||
+|-
+|}
+
+== I Am Willing KH’HOB DEM GLOYBN==
+[https://sitebuilt.net/files/abv/Ikh%27hob%20dem%20gloybn%20%D7%9B%D7%B3%D7%94%D7%90%D6%B8%D7%91%20%D7%93%D7%A2%D7%9D%20%D7%92%D7%9C%D7%B1%D7%91%D7%9F%20-%20I%20am%20Willing.pdf sheet music]
+<html5media >https://www.youtube.com/watch?v=1AkGk5maD8Q</html5media>holly near
+[https://www.youtube.com/watch?v=njQiReoGOqQ&feature=player_embedded lorin,polina]
+<html5media>https://sitebuilt.net/files/abv/Kh%27hob%20dem%20Gloybn-I%20Am%20Willing.mp3</html5media>bass
+
+{|width="600em"
+|kh’hob dem gloybn, kh’hob dem kheyshek,||I have faith, I have yearning,
+|-
+|zayn fartsveyflt tor men nit,||To be desperate (is) allowed one not,
+|-
+|mir gedenken doyres kemfers||We remember generations of fighters
+|-
+|far banayung un far likht.||For renewal and for light.
+|-
+|
+|-
+|mayn mishpokhe filt a veytik,||My family feels a pain,
+|-
+|un mayn shtot iz ful mit tsar,||And my town is full of sorrow.
+|-
+|s’iz dos gantse land dershrokn,||It is the whole country that is frightened,
+|-
+|es filt di velt a shvern gzar.||It lacks (in) the world a heavy decree.
+|-
+|
+|-
+|zoln kinder zen alts klorer,||Should children see more clearly
+|-
+|un di firers kliger zayn;||And the leaders smarter be;
+|-
+|blozt shoyn, vintn fun banayung,||Blow, alredy winds of renewal,
+|-
+|zol es baysn, s’iz keday.||Let it bite, it is in order.
+|-
+|
+|-
+|helf mir, boym, un halt mayn dayge,||Help me, tree, and stop my worry,
+|-
+|helf mir, midber, halt mayn shrek,||Help me, desert, stop my fear,
+|-
+|mikh farkishef, royte shkie,||Enchant me, red sunset,
+|-
+|nem, du yam, mayn trer avek.||Take you oceans my tears away.
+|-
+|}
+
+
+
+== Makhatonim Geyen ==
+[http://www.abvchorus.org/resources/print/Mekhutonim%20Geyen_Practice%20Version_2.pdf practice]
+[http://www.abvchorus.org/resources/print/Mekhutonim%20Geyen_Version%20with%20Polina%20and%20Lorin.pdf  w Lorin]
+<b>Bob:</b>
+<html5media>http://www.abvchorus.org/resources/audio/makhetonim/Makhutonim%20Geyen-Basses.mp3</html5media>bass
+
+<score vorbis="1">{
+\clef bass \tempo 4=80 \key des \major \time 2/4
+\set Score.currentBarNumber = #1 \bar ""
+des4 r8 f8 f16 f16 f4 f8 f ges f4 f16 f f8 bes, c16 des f8 ges f8. f16 
+f16 f16 f4 f8 bes, c des4 c8 ees f16 ges f ees ees8 c f4
+f8 f f4 r8 bes,~ bes,16 c des8 f f f4 ees16 des c ees f4
+f8 f f4 r8 bes,~ bes,16 c des8 f f f4 ees16 des c ees f4 
+ges8 f ees4 a8 ges f4 c8 des ees e f f f4
+ges8 f ees4 a8 ges f4 c8 des ees e f r r4
+}
+\addlyrics {\set fontSize = #-2
+- Di makh- e- to- nim gey- en shoyn!
+Lo- mir zikh frey- e- n, shat nor, shat!
+Der kho- sn iz gor a par- shoyn
+Shpilt a li - dl dem kho- sns tsad!
+Ay, ay, ay, tshi ri- bam Ay, ay, ay, di- dl di- dl dam
+Yay- dl dam, day dl dam Yay- dl dam, di- dl di- dl dam
+Tshi- ri bam, Tshi- ri bam, Bom tshi- ri- tshi ri- tshi- bom
+Tshi- ri bam, Tshi- ri bam, Bom tshi- ri- tshi bom
+} \midi{}</score>
+
+{|width="600em"|
+|Di makhetonim geyen shoyn! ||The in-laws are coming now!
+|-
+|Lomir zikh freyen, shat nor, shat! ||Let us     rejoice,  quiet, just be quiet!
+|-
+|Der khosn iz gor a parshoyn ||The groom is quite the personage,
+|-
+|Shpilt a lidl dem khosns tsad! ||Play a song for the groom’s side!
+|-
+|Ay, ay, ay, tshi-ri-bam.... ||
+|-
+|||
+|-
+|||
+|-
+|Dem khosns shvester freydl-kroyn ||The groom’s sister Freydl-dear
+|-
+|Dreyt zikh vi a dreydl, shat nor, shat ||Spins herself like a dreydl, quietly only, quietly
+|-
+|Nemt zi arayn in redl shoyn ||Take her  into (the) circle now,
+|-
+|Shpilt a lidl dem khosns tsad. ||Play a song for the groom’s side!
+|-
+|Ay, ay, ay, tshi-ri-bam.... ||
+|-
+|||
+|-
+|||
+|-
+|Ot geyt der feter mindik-koyt ||There goes the uncle Mindik-(?)
+|-
+|Vos hobn mir gezindikt, shat nor, shat ||What have we sinned, quietly only, quietly
+|-
+|Er blozt zikh vi an indik royt ||He blows himself (up) like a turkey red
+|-
+|Shpilt a lidl dem khosns tsad. ||Play a song for the groom’s side!
+|-
+|Ay, ay, ay, tshi-ri-bam.... ||
+|-
+|}
+
+
+== Un Du Akerst ==
+[http://www.abvchorus.org/resources/print/Un%20Du%20Akerst%20V2.pdf  sheet music]
+
+<html5media>http://www.abvchorus.org/resources/audio/un_du_akerst_pre_2019/Un%20Du%20Akerst%20Pronunciation%20Drill.mp3</html5media> UnDuAkerst-pronunciation
+
+<html5media>http://www.abvchorus.org/resources/audio/un_du_akerst/UnDuAkerst%20m1-30%20B1.mp3</html5media>
+UnDuAkerst-bass
+
+{|width="600em"|
+|Un du akerst, un du zeyst,||And you plow and you sow
+|-
+|Un du fiterst, un du neyst,||and you feed and you sew
+|-
+|'''Un du hamerst, un du shpinst''',||and you hammer and you spin
+|-
+|'''Zog, mayn fo-o-olk, vos du fardi-i-i-inst'''.||Tell me, my people, wahat you earn?
+|-
+|||
+|-
+|||
+|-
+|||
+|-
+|||
+|-
+|Nor vu iz dayn tish gegreyt?||Where is your table set?
+|-
+|Nor vu iz dayn yomtev-kleyd?||Where are your holiday clothes?
+|-
+|'''Nor vu iz dayn sharfe shverd?'''||Where is your sharp sword? 
+|-
+|'''Velkhes gli-i-ik iz dir bashe-e-e-ert?'''||What fortune is for you destined
+|-
+|||
+|-
+|||
+|-
+|||
+|-
+|||
+|-
+|Man fun arbet, oyfgevakht,||man of work, awak up
+|-
+|Un derken dayn groyse makht.||and recognize your great power!
+|-
+|'''Ven dayn shtarker hant nor vil'''||Whenever your strong arm want to
+|-
+|'''Shteyen ale reder shtil.'''|| stand all wheels still.
+|-
+|||
+|-
+|||
+|-
+|'''Kling, klang,'''||
+|-
+|'''Shteyen ale reder shtil.'''||stand all wheels still.
+|-
+|}
+
+
+You plow and you sow, you graze and sew, hammer and weave. What, my people, do you earn? Where is your table set? Where are your holiday clothes? What joy is there for you? Working man, awake and recognize your strength! Your mighty arm can stop the wheels from turning.
+
+==Mayn Rue Plats==
+[http://www.abvchorus.org/resources/print/Mayn%20Rue%20Plats%20all%20verses.pdf sheet music]
+after Anthony
+<score vorbis="1">{\clef bass \tempo 4=90 \time 3/4
+\set Score.currentBarNumber = #1 \bar ""
+  a,8 r4 a,8 c d e4. g8 a g e4 c8. c16 e8 c e4. c8 d b, a,4 r8 a, c e
+  a,4. e8 d8. d16 c4 b, g8. c'16 b8(a g) f e d c2 
+
+}\addlyrics {\set fontSize = #-2
+  - NIT ZUKH MIKH VU DI MIR- TN GRI- NEN GE- FINST MIKH DOR- TN NIT, MAYN SHATS.
+  VU LE- BNS VEL- KN BAY MA- SHI- NEN, DOR- TN IZ-  MAYN RU- E PLATS.
+} 
+\midi{}</score>
+Anthony then...
+{|width="600em"A
+|NIT ZUKH MIKH VU DI MIRTN GRINEN. ||Not  look     for me where the myrtle green
+|-
+|GEFINST MIKH DORTN NIT, MAYN SHATS. ||Find         me           there    not   my        treasure 
+|-
+|VU LEBNS VELKN BAY MA_SHI_NEN, ||Where lives   wither    by     machines
+|-
+|DOR_TN IZ_ _MAYN RU_E PLATS. ||There     is   my        resting place
+|-
+|Now Anthony then...||
+|-
+|<s>NIT ZUKH MIKH VU DI FEYGL ZINGEN. <s/>||Not look     for me   where the birds sing
+|-
+|GEFINST MIKH DORTN NIT MAYN SHATS. ||Find         me           there    not   my        treasure
+|-
+|A SHKLAF BIN IKH VU KEYTN KLINGEN. ||A slave         am   I       where chains  clang
+|-
+|DORTN IZ MAYN RUE PLATS. ||There     is   my        resting place
+|-
+|Anthony then...||
+|-
+|UN LIBSTU MIKH MIT VARER LIBE, ||And love      me        with  true       love
+|-
+|TO KUM <s>TSU MIR,</s> MAYN GUTER SHATS, ||then come  to    me      my         good    treasure            
+|-
+|UN HAY_TER OYF MAYN HARTS DOS TRI_BE, ||and    exhilarate          my     heart       the    gloomy
+|-
+|UN MAKH MIR ZIS _ _ MAYN RU_E PLATS. ||and  make for me sweet my resting place
+|-
+|||
+|-
+|}
+<score vorbis="1">{\clef bass \tempo 4=90 \time 3/4 \key f \major
+\set Score.currentBarNumber = #36 \bar ""
+  d4 r8 d f g a4. c'8 d' c' a4 f8. r16 r4 r8 d f d cis a, d4 r8 d f a d'4. a8 d'8. c'16 
+  bes4 a8. d16 e8 f g( a bes) c' c' c f2 
+
+}\addlyrics {\set fontSize = #-2
+ - UN LIB- STU MIKH MIT VA- RER LI- BE TO KUM MAYN GUTER SHATS,
+ UN HAY_TER OYF MAYN HARTS DOS TRI- BE, UN MAKH MIR ZIS - - MAYN RU- E PLATS
+} 
+\midi{}</score>
+<b>Bob: all the way through</b><br/>
+<html5media >http://www.abvchorus.org/resources/audio/mayn_rue_plats/Mayn_Rue_Platz_bass.mp3</html5media>
+
+==Di Arbuzn==
+http://www.abvchorus.org/resources/print/Di%20Arbuzn%20-%20SATB.pdf
+
+http://www.abvchorus.org/resources/print/Di%20Arbuzn%20lyrics%20and%20translation.pdf
+
+  Poem by Mendl Abarbanel (1888-1957), Soviet Yiddish poet
+  Set to music by Ben Yomen (1901-1970), born in Ukraine, emigrated to US
+  and taught music at Arbeter Ring shuln and Camp Kinder Ring
+  Song made popular by the Pennywhistlers, an all-woman folk group led by
+  ethnomusicologist Ethel Raim
+  Yiddish Lyrics English translation (not singable)
+{|width="600em"A
+|S’iz der step shoyn opgeshorn, ||The steppes have been mowed,|-
+|}
+
+  S’iz der step shoyn opgeshorn,
+  Un shoyn alts tsunoyfgenumen.
+  <b>Libster mayner, kum tsu forn,
+  Ikh vel vartn oyf dayn kumen, hey!</b>
+  Di arbuzn zaynen tsaytik,
+  <b>S’geyt di zaft fun zey ariber,
+  Ful mit ziskayt ongegosn,
+  Vi mayn harts iz ful mit libe.</b>
+  Un di karshn, libster mayner,
+  <b>Zaynen shvarts vi dayne oygn.
+  Ongeshotn oyf di beymer
+  Un di tsvaygn zikh azh boygn.
+  Kum tsu forn, libster mayner,
+  Un genug shoyn undz tsu troymen,
+  Rayf un tsaytik iz mayn libe,
+  Vi s’iz tsaytik mayne floymen!</b>
+
+  The steppes have been mowed,
+  And everything has been gathered.
+  My dearest, come visit me -
+  I await your arrival.
+  The watermelons are ripe,
+  Their juice is overflowing,
+  They’re full of sweetness,
+  As my heart is full of love.
+  And the cherries, my dearest,
+  Are black like your eyes.
+  The trees are loaded
+  And the branches are bending.
+  Come visit me, my dearest,
+  And enough of this dreaming.
+  My love is ripe and ready,
+  Ready as my plums are!
+
+<b>Bob:</b><br/>
+<html5media >http://www.abvchorus.org/resources/audio/di_arbuzn/Di%20Arbuzn%20Derek%20bass.mp3</html5media>

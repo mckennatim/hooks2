@@ -1,4 +1,10 @@
-# blank
+# s2g
+
+## log
+
+### 5/23/20
+
+
 What is a minimal blank app? It should...
 * have dev and prod modes, be able to deploy
 * have a basic redux like thing

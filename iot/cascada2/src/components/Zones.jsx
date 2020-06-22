@@ -16,11 +16,8 @@ import {CondensedSched} from './CondensedSched.jsx'
 const Zones=(props)=>{
   const {zones, state, locdata, devs, changeTo}=props
   const tzadj=locdata ? locdata.tzadj : "0"
-  const keys = Object.keys(state)
-  console.log('keys: ', keys)
-  const tkeys = keys.filter((k)=>k!='temp_out')
-  console.log('tkeys: ', tkeys)
-  console.log('state: ', state)
+  // const keys = Object.keys(state)
+  // const tkeys = keys.filter((k)=>k!='temp_out')
 
   const toggleOnOff=(typ)=>()=>{
     const newt = !state[typ].darr[0]*1
@@ -29,7 +26,7 @@ const Zones=(props)=>{
 
   const schedChange=(typ)=>()=>{
     // console.log('asched: ', asched)
-    nav2('DailyScheduler', {locdata, asched:state[typ].pro, from:'Control'}, typ)
+    nav2('DailyScheduler', {locdata, asched:state[typ].pro, from:'Control',typ}, typ)
   }
 
   const handleWeekly=(typ)=>()=>{
@@ -68,9 +65,6 @@ const Zones=(props)=>{
 
   const renderZone=()=>{
     if(zones.length>0){
-      console.log('zones: ',zones)
-      console.log('state: ', state)
-      console.log('devs: ', devs)
       return(
         <div style={styles.content}>
         <fieldset>

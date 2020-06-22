@@ -8,7 +8,10 @@ const DailyScheduler=(props)=>{
   console.log('prups: ', prups)
   const {locdata, asched, from, type} = prups
   const query = props.cambio.page.params.query
-  const {sunrise,sunset} = locdata
+  //const {sunrise,sunset} = locdata
+  const sunrise='5:14'
+  const sunset = '20:07'
+  console.log('sunrise, sunset: ', sunrise, sunset)
   // const asched = [[0,0,59,53],[7,45,79,71],[10,50,56,52],[17,45,66,64],[20,50,56,52],[22,50,67,61]]
   // const ret2page = props.cambio.page.prups.from
 

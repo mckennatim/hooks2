@@ -8,9 +8,7 @@ import control from '../img/control.png'
 // import zone from '../img/zone.png'
 import daysched from '../img/daysched.png'
 import wksched from '../img/wksched.png'
-
-console.log('cfg: ', cfg)
-
+import {themodule} from '../../npm/react-zonetimer'
 
 import {
   connect,
@@ -28,11 +26,12 @@ const lsh = ls.getItem()
 
 const Control = (props) => {
   const {prups }= props.cambio.page
-
+  const tm = themodule([0,1])
+  const durs = {pond: 20,hi_bed:150,lo_bed:150}
   // const [doupd,setDoupd]=useState(false)
   // const [bsched, setBsched]=useState({loc:'', sched:[[0,0,0]]})
   if(prups.doupd){
-    console.log('prups.sched: ', prups.sched, props.cambio.page.params.query)
+    //
   }
   //   setDoupd(true)
   //   setBsched({loc:props.cambio.page.params.query, sched:prups.sched})
@@ -40,9 +39,8 @@ const Control = (props) => {
   const [client, publish] = useContext(Context);
   client.onMessageArrived= onMessageArrived
 
-  const changePro =(devs,zones, client)=>{
-    console.log('devs,zones: ', props.cambio.page.params.query, devs, zones, prups.sched)
-    const ssched = JSON.stringify(prups.sched)
+  const changePro =(devs,zones, client, sched)=>{
+    const ssched = JSON.stringify(sched)
     const di = getDinfo(props.cambio.page.params.query, devs)
     const topic = `${di.dev}/prg`
     const payload = `{"id":${di.sr},"pro":${ssched}}`
@@ -53,9 +51,8 @@ const Control = (props) => {
   }
 
   const doOtherShit=(devs, zones, client)=>{
-    console.log('devs: ', devs, zones)
-    if (prups.sched && prups.sched.length>1){
-      changePro(devs,zones, client)
+    if (prups.sched && prups.sched.length>0){
+      changePro(devs,zones, client, prups.sched)
     }
     publish(client, "presence", "hello form do other shit")
   }
@@ -63,7 +60,6 @@ const Control = (props) => {
   const topics  = ['srstate', 'sched', 'flags', 'timr'] 
 
   const {devs, zones, binfo, error}= useDevSpecs(ls, cfg, client, (devs,zones)=>{
-    console.log('running usdevSpecs')
     if(!client.isConnected()){
       connect(client,lsh,(client)=>{
         if (client.isConnected()){
@@ -106,6 +102,7 @@ const Control = (props) => {
 
 
   monitorFocus(window, client, lsh, (status, client)=>{
+    console.log('status: ', status)
     setStatus(status)
     if (client.isConnected()){
       setupSocket(client, devs, publish, topics, (devs,client)=>doOtherShit(devs,zones, client))
@@ -117,21 +114,53 @@ const Control = (props) => {
     window.location.assign(href)
   }
 
+  const parseToday =(sched, dur)=>{
+    if(prups.locdata.tzadj){
+      const now =tm.getNow(prups.locdata.tzadj)
+      // const hm = now.split(':')
+      const hma2 = tm.addMin(now,dur)
+      const shsched = sched.filter((s)=>{
+        const nowmin = hma2[0]*60+hma2[1]*1
+        const smin = s[0]*60+s[1]*1
+        return smin>nowmin
+      })
+      const bi = tm.createInterval(now,dur,[[0,0,0]], 0,1,false, 17)
+      bi.unshift([0,0,0])
+      const ni = bi.concat(shsched)
+      console.log('ni: ', ni)
+      sched=ni
+    }
+    return sched
+  }
+
   const changeTo = (onoff, rm)=>{
     console.log('devs: ', devs)
     console.log('zones: ', zones)
+    console.log('onoff: ', onoff)
+    console.log('rm: ', rm)
     const di = getDinfo(rm,devs)
-    const topic = `${di.dev}/cmd`
-    const payload = `{"id":${di.sr},"sra":[${onoff}]}`
-    console.log('topic,payload: ', topic,payload)
-    publish(client, topic, payload)
+    if(onoff){
+      const dur = rm=='pond' ? 20 : 150
+      const psched = parseToday(prups.sched,dur)
+      const ssched = JSON.stringify(psched)
+      const topic = `${di.dev}/prg`
+      const payload = `{"id":${di.sr},"pro":${ssched}}`
+      publish(client, topic,payload)
+      const reqtop =`${di.dev}/req`
+      const reqpay =`{"id":${di.sr},"req":"pro"}`
+      publish(client, reqtop,reqpay)
+    }else{
+      const topic = `${di.dev}/cmd`
+      const payload = `{"id":${di.sr},"sra":[${onoff}]}`
+      console.log('topic,payload: ', topic,payload)
+      publish(client, topic, payload)
+    }
   }
 
 
 
 
   useEffect(()=>{
-    console.log('prups.sched: ', prups.sched)
     if (prups.sched && prups.sched.length>1){
       console.log('spinn')
       // changePro()
@@ -143,6 +172,17 @@ const Control = (props) => {
     }
   }, [prups.sched])
   // console.log('devs,zones: ', devs,zones)
+
+  const refocus =()=>{
+    console.log("focvus")
+    monitorFocus(window, client, lsh, (status, client)=>{
+      console.log('status: ', status)
+      setStatus(status)
+      if (client.isConnected()){
+        setupSocket(client, devs, publish, topics, (devs,client)=>doOtherShit(devs,zones, client))
+      }
+    })
+  }
 
   const rrender=()=>{
     if (!error){
@@ -186,7 +226,7 @@ const Control = (props) => {
   }
 
   return (
-    <div>
+    <div onClick={refocus}>
       {rrender()}
     </div>
   );

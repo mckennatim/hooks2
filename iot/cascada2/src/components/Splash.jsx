@@ -6,7 +6,6 @@ import control from '../img/control.png'
 
 const Splash = () =>{
   const signin = makeHref(window.location.hostname, 'signin', '')
-  console.log('signin: ', signin)
   const sched=  [[0,0,65,63],[6,47,69,67],[9,24,65,63],[14,30,75,73],[22,0,65,63]] 
   const sz= 30
   const renderClocks = ()=>{

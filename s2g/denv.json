@@ -5,17 +5,17 @@
   "wss_port": 3012,
   "sitebuilt.net":{
     "soauth": "https://services.sitebuilt.net/soauth",
-    "api": "https://services.sitebuilt.net/s2g/api",
-    "socket": "https://services.sitebuilt.net/s2gio"
+    "api": "http://parleyvale.com:3111/api",
+    "socket": "http://parleyvale.com:3333"
   },
   "parleyvale.com": {
     "soauth": "https://services.sitebuilt.net/soauth",
     "api": "https://services.parleyvale.com/s2g/api",
-    "socket": "https://stuff2get.parleyvale.com/sockio"
+    "socket": "https://services.parleyvale.com/s2gi"
   },
   "localhost": {
     "soauth": "http://localhost:7080",
-    "api": "http://localhost:3333/api",
-    "socket": "http://localhost:3333"
+    "api": "http://parleyvale.com:3111/api",
+    "socket": "http://parleyvale.com:3333"
   }
 }

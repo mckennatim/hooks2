@@ -1,7 +1,10 @@
 import React from 'react'
 // import {ZoneTimer} from '../../npm/react-zonetimer'
-import{ZoneTimer}from '@mckennatim/react-zonetimer'
+import{ZoneTimer, themodule}from '@mckennatim/react-zonetimer'
 import {nav2 } from '../app'
+
+const tm=themodule([0,1])
+console.log('tm: ', tm)
 
 const DailyScheduler=(props)=>{
   const {prups}=props.cambio.page

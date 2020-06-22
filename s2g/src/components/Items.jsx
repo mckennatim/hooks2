@@ -6,12 +6,12 @@ import io from 'socket.io-client';
 import {Item} from './Item.jsx'
 
 // var socket = io.connect(cfg.urls.socket,{
-//   // secure: true,
-//   // rejectUnauthorized: false,
+//   secure: true,
+//   rejectUnauthorized: false,
 //   path: '/s2gi/socket.io'
 // });
-var socket = io.connect(cfg.urls.socket, {path:'/sockio/socket.io'});
-// var socket = io.connect(cfg.urls.socket);
+// var socket = io.connect(cfg.urls.socket, {path:'/sockio/socket.io'});
+var socket = io.connect(cfg.urls.socket);
 
 console.log('cfg.urls.socket: ', cfg.urls.socket)
 
@@ -186,6 +186,7 @@ const Items=()=>{
     const stidx = stores
       .filter((s)=>s.store==e.target.value)
     console.log(stores)
+    console.log('stidx: ', stidx)
     setSorter(e.target.value)
     if (e.target.value=='alpha'){
       items.sort((a,b)=>{
@@ -193,11 +194,17 @@ const Items=()=>{
       })
     }else{
       items.sort((a,b)=>{
+        console.log('a,b: ', a,b)
         const aa = stidx.findIndex((s)=>s.loc==a.loc)
         const bb = stidx.findIndex((s)=>s.loc==b.loc)
-        return aa > bb ? 1 :-1
+        console.log('aa,bb: ', aa,bb)
+        return aa*1 > bb*1 ? 1 :-1
       })
     }
+  }
+
+  const refresh =()=>{
+    getItems()
   }
 
   const renderFound=()=>{
@@ -240,7 +247,8 @@ const Items=()=>{
     return(
       <header>
         <span>{lidinfo.type} </span>
-        <span> {lidinfo.lid}</span>
+        <button onClick={refresh}>refresh</button>
+        <span> {lidinfo.lid} frog</span>
         <select
           value={sorter}
           name="sorter drop"
