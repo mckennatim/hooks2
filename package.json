@@ -15,7 +15,7 @@
     "@mckennatim/mqtt-hooks": "^1.2.0",
     "@mckennatim/react-zonetimer": "^0.1.0",
     "@solid/react": "^1.8.0",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.0.3",
     "core-js": "^3.6.4",
     "css-loader": "^3.4.2",
